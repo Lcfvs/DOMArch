@@ -4,7 +4,7 @@
     "email": "michael.rouges@gmail.com"
   },
   "name": "DOMArch",
-  "description": "A PHP DOM micro-framework, based on a revised version of PHPDOM",
+  "description": "A PHP DOM micro-framework, based on PHPDOM",
   "homepage": "https://github.com/Lcfvs/DOMArch",
   "keywords": [
     "PHP",
