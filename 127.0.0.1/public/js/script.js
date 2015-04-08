@@ -1,1 +1,1 @@
-consolu.log('Hello from Lcf.vs');
+console.log('Hello from Lcf.vs');
