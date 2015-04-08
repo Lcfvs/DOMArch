@@ -326,7 +326,7 @@ class Document extends \DOMDocument
         
         $this->_scripts = [];
         
-        return substr($this->saveXML(), 56, -1);
+        return substr($this->saveHTML(), 0, -1);
     }
 
     public function __destruct()
