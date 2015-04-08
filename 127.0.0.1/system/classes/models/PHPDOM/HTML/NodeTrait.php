@@ -71,6 +71,6 @@ trait NodeTrait
     
     public function __toString()
     {
-        return $this->ownerDocument->saveXML($this);
+        return $this->ownerDocument->saveHTML($this);
     }
 }
