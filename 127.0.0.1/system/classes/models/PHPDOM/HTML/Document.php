@@ -76,15 +76,15 @@ class Document extends \DOMDocument
                 ]);
         }
 
-        if ($as_view && is_null(static::$_view)) {
+        if ($as_view && is_null(self::$_view)) {
             $this->_asView = true;
-            static::$_view = $this;
+            self::$_view = $this;
         }
     }
 
     public static function getView()
     {
-        $view = static::$_view;
+        $view = self::$_view;
 
         if ($view) {
             return $view;
@@ -252,14 +252,10 @@ class Document extends \DOMDocument
     
     public function addScript($path)
     {
-        if (!preg_match('/^(http(s)?:)?\/\//', $path)) {
-            $path = '/js/' . $path;
-        }
-        
         $script = $this->create([ 
             'tag' => 'script', 
             'attributes' => [ 
-                'src' => $path 
+                'src' => '/js/' . $path 
             ] 
         ]);
         
@@ -339,6 +335,6 @@ class Document extends \DOMDocument
             return;
         }
         
-        echo static::$_view;
+        echo self::$_view;
     }
 }

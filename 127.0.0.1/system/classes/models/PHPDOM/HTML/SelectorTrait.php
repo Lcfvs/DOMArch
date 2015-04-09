@@ -39,7 +39,7 @@ trait SelectorTrait
 
     private static function _parse($selector)
     {
-        $registered_queries = &static::$_queries;
+        $registered_queries = &self::$_queries;
 
         if (array_key_exists($selector, $registered_queries)) {
             return $registered_queries[$selector];
