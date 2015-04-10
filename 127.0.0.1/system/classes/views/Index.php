@@ -10,13 +10,6 @@ namespace Views;
 
 class Index extends Master
 {
-    public function __construct($as_view = null, $template = null)
-    {
-        parent::__construct($as_view, $template);
-        
-        $this->addScript('script.js');
-    }
-    
     public function directoryIndex($items)
     {
         $body = $this->body;

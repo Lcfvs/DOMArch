@@ -26,13 +26,11 @@ if (!$has_dependencies) {
 }
 
 try {
-    new $view(true, 'templates/documents/document.html');
-    (new $controller())->{$action}();
+    $view = new $view();
+    (new $controller($view))->{$action}();
 } catch (Exception $exception) {
-    $action = 'internalErrorAction';
-    $controller = 'Controllers\\Error';
-    $view = 'Views\\Error';
-    
-    new $view(true, 'templates/documents/document.html');
-    (new $controller())->{$action}($exception);
+    $view = new Views\Error();
+    (new Controllers\Error($view))->internalErrorAction($exception);
 };
+
+exit($view);

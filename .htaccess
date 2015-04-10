@@ -1,6 +1,6 @@
 #Copyright 2015 Lcf.vs
 #Released under the MIT license
-#https://github.com/Lcfvs/DOMArch
+#https://github.com/Lcfvs/PHPDOM
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
@@ -8,18 +8,15 @@
     RewriteCond %{DOCUMENT_ROOT}%{HTTP_HOST}/public%{REQUEST_URI} -f
     RewriteRule (.*) %{HTTP_HOST}/public/$1 [L,QSA,NC]
     
-    # host/
     RewriteCond %{DOCUMENT_ROOT}%{HTTP_HOST}/public%{REQUEST_URI} !-f
     RewriteCond %{DOCUMENT_ROOT}%{HTTP_HOST}/system/index.php -f
+    
+    # host/
     RewriteRule ^$ %{HTTP_HOST}/system/?class_name=Index&action=indexAction [L,QSA,NC]
     
     # host/class_name/
-    RewriteCond %{DOCUMENT_ROOT}%{HTTP_HOST}/public%{REQUEST_URI} !-f
-    RewriteCond %{DOCUMENT_ROOT}%{HTTP_HOST}/system/index.php -f
     RewriteRule ^([\w\d-]+)\/?$ %{HTTP_HOST}/system/?class_name=$1&action=indexAction [L,QSA,NC]
     
     # host/class_name/action
-    RewriteCond %{DOCUMENT_ROOT}%{HTTP_HOST}/public%{REQUEST_URI} !-f
-    RewriteCond %{DOCUMENT_ROOT}%{HTTP_HOST}/system/index.php -f
     RewriteRule ^([\w\d-]+)\/([\w\d-]+) %{HTTP_HOST}/system/?class_name=$1&action=$2Action [L,QSA,NC]
 </IfModule>

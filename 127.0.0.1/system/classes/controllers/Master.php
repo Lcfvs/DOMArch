@@ -12,8 +12,8 @@ class Master
 {
     protected $_view;
     
-    public function __construct()
+    public function __construct($view)
     {
-        $this->_view = \PHPDOM\HTML\Document::getView();
+        $this->_view = $view;
     }
 }

@@ -14,3 +14,4 @@ set_include_path(
 );
 
 define('PUBLIC_DIR', __DIR__ . '/../public');
+define('SYSTEM_DIR', __DIR__);

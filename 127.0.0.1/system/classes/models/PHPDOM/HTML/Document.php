@@ -19,11 +19,6 @@ class Document extends \DOMDocument
     public $standalone = true;
     public $preserveWhiteSpace = false;
 
-    // rendering
-    private static $_view;
-    private $_asView = false;
-    private $_scripts = [];
-
     private $_xpath = null;
     private $_fields = ['input', 'select', 'textarea'];
     private $_medias = ['audio', 'video'];
@@ -40,17 +35,24 @@ class Document extends \DOMDocument
         'time', 'title', 'tr', 'tt', 'u', 'ul', 'var', 'video', 'wbr'
     ];
 
-    public function __construct($as_view = false, $template = null, $encoding = 'utf-8')
+    public function __construct($load_default_template = false, $encoding = 'utf-8')
     {
         parent::__construct('1.0', $encoding);
 
-        if (empty($template)) {
-            $template = self::DEFAULT_TEMPLATE;
-        } else {
-            $template = file_get_contents($template);
-        }
+        $this->encoding = $encoding;
         
-        @$this->loadHTML($template);
+        if ($load_default_template) {
+            $this->loadHTML(static::DEFAULT_TEMPLATE);
+        }
+    }
+    
+    public function loadHTML($source, $options = null)
+    {
+        @parent::loadHTML($source, $options);
+
+        $encoding = $this->encoding;
+        
+        $this->_xpath = new \DOMXpath($this);
         $this->registerNodeClass('\\DOMNode', 'PHPDOM\\HTML\\Node');
         $this->registerNodeClass('\\DOMElement', 'PHPDOM\\HTML\\Element');
         $this->registerNodeClass('\\DOMDocumentFragment', 'PHPDOM\\HTML\\DocumentFragment');
@@ -58,7 +60,6 @@ class Document extends \DOMDocument
         $this->formatOutput = false;
         $this->preserveWhiteSpace = false;
         $this->standalone = true;
-        $this->encoding = $encoding;
 
         $meta = $this->select('head meta[charset]');
         
@@ -73,40 +74,15 @@ class Document extends \DOMDocument
                     ]
                 ]);
         }
-
-        if ($as_view && is_null(self::$_view)) {
-            $this->_asView = true;
-            self::$_view = $this;
-        }
-    }
-    
-    public function loadHTML($source, $options = null)
-    {
-        @parent::loadHTML($source, $options);
-
-        $this->_xpath = new \DOMXpath($this);
         
         return $this;
     }
-    
+
     public function loadHTMLFile($filename, $options = null)
     {
-        @parent::loadHTMLFile($source, $options);
-
-        $this->_xpath = new \DOMXpath($this);
+        $source = file_get_contents($filename);
         
-        return $this;
-    }
-
-    public static function getView()
-    {
-        $view = self::$_view;
-
-        if ($view) {
-            return $view;
-        }
-
-        return new self(true);
+        return $this->loadHTML($source);
     }
 
     public function create($definition)
@@ -268,22 +244,14 @@ class Document extends \DOMDocument
     
     public function addScript($path)
     {
-        if (!preg_match('/^(http(s)?:)?\/\//', $path)) {
-            $path = '/js/' . $path;
-        }
-        
         $script = $this->create([ 
             'tag' => 'script', 
             'attributes' => [ 
-                'src' => $path 
+                'src' => '/js/' . $path 
             ] 
         ]);
         
-        if ($this->_asView) {
-            $this->_scripts[] = $script;
-        } else {
-            $this->body->appendChild($script);
-        }
+        $this->body->appendChild($script);
         
         return $script;
     }
@@ -332,29 +300,11 @@ class Document extends \DOMDocument
                 $document_element = $this->documentElement;
                 $document_element->setAttribute('lang', $value);
             break;
-
-            default:
-                parent::__set($name, $value);
         }
     }
 
     public function __toString()
     {
-        foreach ($this->_scripts as $script) {
-            $this->body->appendChild($script);
-        }
-        
-        $this->_scripts = [];
-        
         return substr($this->saveHTML(), 0, -1);
-    }
-
-    public function __destruct()
-    {
-        if (!$this->_asView) {
-            return;
-        }
-        
-        echo self::$_view;
     }
 }

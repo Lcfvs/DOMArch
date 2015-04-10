@@ -4,7 +4,7 @@
     "email": "michael.rouges@gmail.com"
   },
   "name": "DOMArch",
-  "description": "A PHP DOM micro-framework, based on PHPDOM",
+  "description": "A PHP micro-framework, based on PHPDOM",
   "homepage": "https://github.com/Lcfvs/DOMArch",
   "keywords": [
     "PHP",
@@ -14,7 +14,7 @@
     "CSS3",
     "CSS4"
   ],
-  "version": "0.1.0",
+  "version": "0.2.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/Lcfvs/DOMArch.git"
