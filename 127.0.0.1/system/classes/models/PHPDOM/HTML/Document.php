@@ -87,8 +87,10 @@ class Document extends \DOMDocument
 
     public function create($definition)
     {
-        if (gettype($definition) === 'string') {
-            return $this->createTextNode($definition);
+        $type = gettype($definition);
+        
+        if ($type !== 'array' && $type !== 'object') {
+            return $this->createTextNode(strval($definition));
         }
     
         $normalized = $this->_normalize($definition);
