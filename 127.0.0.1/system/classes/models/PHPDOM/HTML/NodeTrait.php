@@ -20,7 +20,7 @@ trait NodeTrait
     public function decorate($definition)
     {
         $node = $this->parentNode->insert($definition, $this);
-        $node->appendChild($this);
+        $node->append($this);
 
         return $node;
     }
@@ -29,6 +29,10 @@ trait NodeTrait
     {
         if ($definition instanceof self || $definition instanceof DocumentFragment) {
             $node = $definition;
+            
+            if ($definition instanceof DocumentFragment) {
+                $node->parent = $this;
+            }
         } else {
             $node = $this->ownerDocument->create($definition);
         }
@@ -69,6 +73,46 @@ trait NodeTrait
     {
         $node = $this->ownerDocument->create($definition);
         $this->parentNode->replaceChild($node, $this);
+
+        return $node;
+    }
+
+    public function addClass($name)
+    {
+        $this->removeClass($name);
+        
+        $class = $this->getAttribute('class');
+        
+        if ($class) {
+            $class->nodeValue .= ' ' . $name;
+        } else {
+            $this->setAttribute('class', $name);
+        }
+
+        return $node;
+    }
+
+    public function removeClass($name = null)
+    {
+        if (is_null($name)) {
+            $this->removeAttribute('class');
+            
+            return $this;
+        }
+        
+        $class = $this->getAttribute('class');
+        
+        if (empty($class)) {
+            return $node;
+        }
+        
+        $classes = trim(preg_plit('/((?:^|\s*)' . $name . '\s*)/', '', $class->nodeValue));
+        
+        if (empty($classes)) {
+            $this->removeAttribute('class');
+        } else {
+            $class->nodeValue = $classes;
+        }
 
         return $node;
     }

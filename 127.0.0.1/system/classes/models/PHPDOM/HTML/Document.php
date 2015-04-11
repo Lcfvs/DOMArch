@@ -55,6 +55,7 @@ class Document extends \DOMDocument
         $this->_xpath = new \DOMXpath($this);
         $this->registerNodeClass('\\DOMNode', 'PHPDOM\\HTML\\Node');
         $this->registerNodeClass('\\DOMElement', 'PHPDOM\\HTML\\Element');
+        $this->registerNodeClass('\\DOMText', 'PHPDOM\\HTML\\Text');
         $this->registerNodeClass('\\DOMDocumentFragment', 'PHPDOM\\HTML\\DocumentFragment');
         
         $this->formatOutput = false;

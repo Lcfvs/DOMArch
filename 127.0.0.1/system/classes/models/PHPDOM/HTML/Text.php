@@ -6,12 +6,14 @@ Released under the MIT license
  -
 https://github.com/Lcfvs/PHPDOM
 */
-
 namespace PHPDOM\HTML;
 
-class DocumentFragment extends \DOMDocumentFragment
+class Text extends \DOMText
 {
     use NodeTrait;
     
-    public $parent = null;
+    public function __toString()
+    {
+        return $this->wholeText;
+    }
 }
