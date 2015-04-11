@@ -14,8 +14,8 @@ class Index extends Master
     {
         $body = $this->body;
         $directory_index = $this->loadFragment('templates/fragments/directory-index.html');
-        $directory_index->append('test');
-        $ul = $body->append($directory_index)->select('section ul');
+        
+        $ul = $body->append($directory_index)->select('ul');
         
         $body->select('h1')
             ->replace([
