@@ -11,8 +11,6 @@ namespace PHPDOM\HTML;
 
 trait SelectorTrait
 {
-    private static $_queries = [];
-
     public function select($selector)
     {
         $node_list = $this->selectAll($selector);
@@ -29,7 +27,7 @@ trait SelectorTrait
         if ($this instanceof DocumentFragment) {
             $query = '/' . $query;
         }
-        
+
         $node_list = $this->ownerDocument->xpath->evaluate($query, $this);
 
         if ($node_list instanceof \DOMNodeList) {
@@ -39,10 +37,10 @@ trait SelectorTrait
 
     private static function _parse($selector)
     {
-        $registered_queries = &self::$_queries;
-
-        if (array_key_exists($selector, $registered_queries)) {
-            return $registered_queries[$selector];
+        $query = SelectorTrait\Cache::get($selector);
+        
+        if ($query) {
+            return $query;
         }
 
         $query = $selector;
@@ -108,6 +106,7 @@ trait SelectorTrait
         // ' '
         $query = implode('/descendant::', $queries);
         $query = 'descendant-or-self::' . $query;
+        
         // :scope
         $query = preg_replace('/(\|)?descendant-or-self:::scope\/\[/', '\1*[', $query);
         $query = preg_replace('/(\|)?descendant-or-self:::scope/', '\1.', $query);
@@ -124,11 +123,14 @@ trait SelectorTrait
                 $sub_query .= implode('', $results);
             }
 
+            
             $sub_queries[$key] = $sub_query;
         }
 
         $query = implode(',', $sub_queries);
 
-        return $registered_queries[$selector] = $query;
+        SelectorTrait\Cache::set($selector, $query);
+        
+        return $query;
     }
 }

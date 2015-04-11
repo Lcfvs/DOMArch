@@ -87,6 +87,10 @@ class Document extends \DOMDocument
 
     public function create($definition)
     {
+        if (gettype($definition) === 'string') {
+            return $this->createTextNode($definition);
+        }
+    
         $normalized = $this->_normalize($definition);
         $tag = $normalized->tag;
         $data = $normalized->data;
@@ -107,6 +111,10 @@ class Document extends \DOMDocument
                 $node->appendChild($this->createTextNode($line));
             }
         }
+        
+        foreach ($normalized->children as $child) {
+            $node->append($child);
+        }
 
         return $node;
     }
@@ -119,8 +127,13 @@ class Document extends \DOMDocument
         $before = @$normalized->before;
         $data = @$normalized->data;
         $tag = @$normalized->tag;
+        $children = @$normalized->children;
         @$normalized->value =
         $value = @$normalized->value;
+
+        if (!is_array($children)) {
+            $normalized->children = [];
+        }
 
         if (!is_array($attributes)) {
             $attributes = [];
@@ -231,23 +244,23 @@ class Document extends \DOMDocument
         }
     }
     
-    public function addLink($path)
+    public function addLink($path, $directory = '/css/')
     { 
         return $this->select('head')->append([ 
             'tag' => 'link', 
             'attributes' => [ 
                 'rel' => 'stylesheet', 
-                'href' => '/css/' . $path 
+                'href' => $directory . $path 
             ] 
         ]); 
     }
     
-    public function addScript($path)
+    public function addScript($path, $directory = '/js/')
     {
         $script = $this->create([ 
             'tag' => 'script', 
             'attributes' => [ 
-                'src' => '/js/' . $path 
+                'src' => $directory . $path 
             ] 
         ]);
         
@@ -287,7 +300,7 @@ class Document extends \DOMDocument
         switch ($name) {
             case 'title':
                 $title = $this->select('title');
-                $node = $title->select('*');
+                $node = $title->childNodes->item(0);
 
                 if ($node) {
                     $node->nodeValue = $value;

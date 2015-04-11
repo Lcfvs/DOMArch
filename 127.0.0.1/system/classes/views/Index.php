@@ -15,18 +15,15 @@ class Index extends Master
         $body = $this->body;
         $directory_index = $this->loadFragment('templates/fragments/directory-index.html');
         
-        $body->appendChild($directory_index);
+        $ul = $body->append($directory_index)->select('ul');
         
-        $h1 = $body->select('h1')->replace([
-            'tag' => 'h1',
-            'data' => 'Directory index'
-        ]);
-        
-        $h1->decorate([
-            'tag' => 'header'
-        ]);
-        
-        $ul = $directory_index->select('ul');
+        $body->select('h1')
+            ->replace([
+                'tag' => 'h1',
+                'data' => 'Directory index'
+            ])->decorate([
+                'tag' => 'header'
+            ]);
         
         foreach ($items as $name) {
             $ul->append([

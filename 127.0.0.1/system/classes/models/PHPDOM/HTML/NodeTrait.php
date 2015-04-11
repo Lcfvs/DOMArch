@@ -14,10 +14,7 @@ trait NodeTrait
     
     public function append($definition)
     {
-        $node = $this->ownerDocument->create($definition);
-        $this->appendChild($node);
-
-        return $node;
+        return $this->insert($definition);
     }
 
     public function decorate($definition)
@@ -28,17 +25,24 @@ trait NodeTrait
         return $node;
     }
 
-    public function insert($definition, $before)
+    public function insert($definition, $before = null)
     {
-        $node = $this->ownerDocument->create($definition);
+        if ($definition instanceof self || $definition instanceof DocumentFragment) {
+            $node = $definition;
+        } else {
+            $node = $this->ownerDocument->create($definition);
+        }
 
-        if ($before instanceof self) {
+        if ($before instanceof self instanceof DocumentFragment) {
             $this->insertBefore($node, $before);
 
             return $node;
         }
 
-        $before = $this->select($before);
+        if (gettype($before) === 'string') {
+            $before = $this->select($before);
+        }
+        
         $this->insertBefore($node, $before);
 
         return $node;
