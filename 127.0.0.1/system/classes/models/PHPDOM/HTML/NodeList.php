@@ -25,6 +25,18 @@ class NodeList
 
         throw new \Exception('Undefined property ' . $name);
     }
+    
+    public function each($callback)
+    {
+        $index = 0;
+        $length = $this->length;
+
+        for (; $index < $length; $index += 1) {
+            $result = $callback($this->item($index), $index, $this);
+        }
+        
+        return $result;
+    }
 
     public function item($index)
     {
@@ -36,12 +48,11 @@ class NodeList
     public function __toString()
     {
         $data = '';
-        $index = 0;
-        $length = $this->length;
 
-        for (; $index < $length; $index += 1) {
+        $this->each(function ($node, $index, $node_list)
+        use (&$data) {
             $data .= $this->item($index);
-        }
+        });
 
         return $data;
     }
