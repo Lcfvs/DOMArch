@@ -67,7 +67,9 @@ $paragraph = $document->create([
     'tag' => 'p',
     'children' => [[
         'tag' => 'a',
-        'href' => 'https://github.com/Lcfvs/DOMArch',
+        'attributes' => [
+            'href' => 'https://github.com/Lcfvs/DOMArch',
+        ],
         'data' => 'DOMArch'
     ]]
 ]);
