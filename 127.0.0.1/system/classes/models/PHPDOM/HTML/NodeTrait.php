@@ -64,7 +64,13 @@ trait NodeTrait
             $node = $this->ownerDocument->create($definition);
         }
         
-        $this->parentNode->insertBefore($node, $this);
+        if (!empty($this->parentNode)) {
+            $parent = $this->parentNode;
+        } else if (!empty($this->parent)) {
+            $parent = $this->parent;
+        }
+        
+        $parent->insertBefore($node, $this);
 
         return $node;
     }
@@ -80,8 +86,23 @@ trait NodeTrait
 
     public function replace($definition)
     {
-        $node = $this->ownerDocument->create($definition);
-        $this->parentNode->replaceChild($node, $this);
+        if ($definition instanceof self || $definition instanceof DocumentFragment) {
+            $node = $definition;
+            
+            if ($definition instanceof DocumentFragment) {
+                $node->parent = $this;
+            }
+        } else {
+            $node = $this->ownerDocument->create($definition);
+        }
+        
+        if (!empty($this->parentNode)) {
+            $parent = $this->parentNode;
+        } else if (!empty($this->parent)) {
+            $parent = $this->parent;
+        }
+        
+        $parent->replaceChild($node, $this);
 
         return $node;
     }

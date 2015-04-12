@@ -7,6 +7,7 @@ Append, insert, etc.
 * [Insert an element before another](#insert-an-element-before-another)
 * [Decorate an element](#decorate-an-element)
 * [Prepend an element](#prepend-an-element)
+* [Replace an element](#replace-an-element)
 
 [Tutorials summary](./readme.md#summary)<br />
 [Summary](../readme.md#summary)
@@ -66,6 +67,18 @@ $header = $section->prepend($header);
 $section = $document->prepend([
     'tag' => 'hr'
 ]);
+````
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
+[Main summary](../readme.md#summary)
+
+## <a name="replace-an-element">Replace an element</a>
+````PHP
+$section = $document->body->append([
+    'tag' => 'section'
+]);
+
+$section = $header->replace($section);
 ````
 [Summary](#summary)<br />
 [Tutorials summary](./readme.md#summary)<br />
