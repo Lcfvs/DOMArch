@@ -13,7 +13,7 @@ Cheatsheet
 * [Get the element source](#get-the-element-source)
 * [Get the node list source](#get-the-nodelist-source)
 
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Summary](../readme.md#summary)
 
 ## <a name="manipulate-the-title">Manipulate the title</a>
@@ -28,7 +28,7 @@ $document->title = 'title';
 $document->title .= ' !!!';
 ````
 [Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Tutorials summary](./readme.md#summary)
 [Main summary](../readme.md#summary)
 
 ## <a name="add-a-stylesheet">Add a stylesheet</a>
@@ -43,7 +43,7 @@ $link = $document->addStyleSheet('style.css', '/directory/');
 $link = $document->addStyleSheet('style.css', null, [/* extra attributes */]);
 ````
 [Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Tutorials summary](./readme.md#summary)
 [Main summary](../readme.md#summary)
 
 ## <a name="add-a-script-on-an-element">Add a script on an element</a>
@@ -58,7 +58,7 @@ $script = $document->body->addScript('script.js', '/directory/');
 $script = $document->body->addScript('script.js', null, [/* extra attributes */]);
 ````
 [Summary](#summary)<br />
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="add-a-class-on-an-element">Add a class on element</a>
@@ -66,7 +66,7 @@ $script = $document->body->addScript('script.js', null, [/* extra attributes */]
 $body = $document->body->addClass('class-name');
 ````
 [Summary](#summary)<br />
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="remove-a-class-on-an-element">Remove a class on an element</a>
@@ -74,7 +74,7 @@ $body = $document->body->addClass('class-name');
 $body = $document->body->removeClass('class-name');
 ````
 [Summary](#summary)<br />
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="remove-all-classes-on-an-element">Remove all classes on an element</a>
@@ -82,7 +82,7 @@ $body = $document->body->removeClass('class-name');
 $body = $document->body->removeClass();
 ````
 [Summary](#summary)<br />
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="get-the-document-source">Get the document source</a>
@@ -93,7 +93,7 @@ $source = $document->__toString();
 echo $document;
 ````
 [Summary](#summary)<br />
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="get-the-element-source">Get the element source</a>
@@ -104,7 +104,7 @@ $source = $document->body->__toString();
 echo $document->body;
 ````
 [Summary](#summary)<br />
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="get-the-nodelist-source">Get the node list source</a>
@@ -115,5 +115,5 @@ $source = $document->body->selectAll('*')->__toString();
 echo $document->body->selectAll('*');
 ````
 [Summary](#summary)<br />
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)

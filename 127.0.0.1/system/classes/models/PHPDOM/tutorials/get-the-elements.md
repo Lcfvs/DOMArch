@@ -10,7 +10,7 @@ Get the elements
 * [Select an element](#select-an-element)
 * [Select all elements](#select-all-elements)
 
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="get-the-document-body">Get the document body</a>
@@ -18,7 +18,7 @@ Get the elements
 $body = $document->body;
 ````
 [Summary](#summary)<br />
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="get-the-document-forms">Get the document forms</a>
@@ -26,7 +26,7 @@ $body = $document->body;
 $node_list = $document->forms;
 ````
 [Summary](#summary)<br />
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="get-the-document-form-elements">Get the document form elements</a>
@@ -34,7 +34,7 @@ $node_list = $document->forms;
 $node_list = $document->forms->item(0)->elements;
 ````
 [Summary](#summary)<br />
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="get-the-element-children">Get the element children</a>
@@ -42,7 +42,7 @@ $node_list = $document->forms->item(0)->elements;
 $node_list = $document->children();
 ````
 [Summary](#summary)<br />
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="select-an-element">Select an element</a>
@@ -50,7 +50,7 @@ $node_list = $document->children();
 $element = $document->select('selectors');
 ````
 [Summary](#summary)<br />
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="select-all-elements">Select all elements</a>
@@ -58,5 +58,5 @@ $element = $document->select('selectors');
 $node_list = $document->selectAll('selectors');
 ````
 [Summary](#summary)<br />
-[Tutorials summary](./index.md#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)

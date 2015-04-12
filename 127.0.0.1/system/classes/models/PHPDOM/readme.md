@@ -4,8 +4,8 @@ A PHP DOM tool, based on a revised version of [php-selector](https://github.com/
 
 ## <a name="summary">Summary</a>
 * [Demos](#demos)
-* [Reference](./reference/index.md#title)
-* [Tutorials](./tutorials/index.md#title)
+* [Reference](./reference/readme.md#title)
+* [Tutorials](./tutorials/readme.md#title)
 * [Licenses](#licenses)
 
 ## <a name="demos">Demos</a>
