@@ -54,7 +54,16 @@ trait NodeTrait
 
     public function prepend($definition)
     {
-        $node = $this->ownerDocument->create($definition);
+        if ($definition instanceof self || $definition instanceof DocumentFragment) {
+            $node = $definition;
+            
+            if ($definition instanceof DocumentFragment) {
+                $node->parent = $this;
+            }
+        } else {
+            $node = $this->ownerDocument->create($definition);
+        }
+        
         $this->parentNode->insertBefore($node, $this);
 
         return $node;
@@ -117,14 +126,14 @@ trait NodeTrait
         return $node;
     }
     
-    public function addScript($path, $directory = '/js/')
+    public function addScript($path, $directory = '/js/', array $attributes = [])
     {
-        $definition = [ 
+        $definition = array_merge([ 
             'tag' => 'script', 
             'attributes' => [ 
                 'src' => $directory . $path 
             ] 
-        ];
+        ], $attributes);
         
         if ($this instanceof Document) {
             return $this->body->append($definition);

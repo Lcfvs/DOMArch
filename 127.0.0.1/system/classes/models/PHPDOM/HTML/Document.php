@@ -245,7 +245,7 @@ class Document extends \DOMDocument
         }
     }
     
-    public function addStyleSheet($path, $directory = '/css/', $attributes = [])
+    public function addStyleSheet($path, $directory = '/css/', array $attributes = [])
     { 
         return $this->select('head')->append(array_merge([ 
             'tag' => 'link', 
@@ -253,7 +253,7 @@ class Document extends \DOMDocument
                 'rel' => 'stylesheet', 
                 'href' => $directory . $path
             ] 
-        ], $attributes); 
+        ], $attributes)); 
     }
     
     public function select($selector)

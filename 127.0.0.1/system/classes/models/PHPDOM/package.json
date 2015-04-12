@@ -3,9 +3,9 @@
     "name": "Lcf.vs",
     "email": "michael.rouges@gmail.com"
   },
-  "name": "DOMArch",
-  "description": "A PHP micro-framework, based on PHPDOM",
-  "homepage": "https://github.com/Lcfvs/DOMArch",
+  "name": "PHPDOM",
+  "description": "A PHP DOM tool, based on a revised version of php-selector",
+  "homepage": "https://github.com/Lcfvs/PHPDOM",
   "keywords": [
     "PHP",
     "DOM",
@@ -14,16 +14,16 @@
     "CSS3",
     "CSS4"
   ],
-  "version": "0.3.8",
+  "version": "0.8.8",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Lcfvs/DOMArch.git"
+    "url": "git://github.com/Lcfvs/PHPDOM.git"
   },
   "engines": {
     "PHP": ">=5.4"
   },
   "readmeFilename": "readme.md",
   "bugs": {
-    "url": "https://github.com/Lcfvs/DOMArch/issues"
+    "url": "https://github.com/Lcfvs/PHPDOM/issues"
   }
 }
