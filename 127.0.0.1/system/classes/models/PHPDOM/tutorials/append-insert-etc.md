@@ -8,7 +8,7 @@ Append, insert, etc.
 * [Decorate an element](#decorate-an-element)
 * [Prepend an element](#prepend-an-element)
 
-[Tutorials summary](./index.md#summary)
+[Tutorials summary](./index.md#summary)<br />
 [Summary](../readme.md#summary)
 
 ## <a name="append-an-element">Append an element</a>
@@ -21,8 +21,8 @@ $hgroup = $document->body->append([
     ]
 ]);
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="insert-an-element-before-another">Insert an element before another</a>
@@ -40,8 +40,8 @@ $h1 = $hgroup->insert([
     'data' => 'Body title'
 ], 'h2');
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="decorate-an-element">Decorate an element</a>
@@ -50,8 +50,8 @@ $header = $hgroup->decorate([
     'tag' => 'header'
 ]);
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="prepend-an-element">Prepend an element</a>
@@ -67,6 +67,6 @@ $section = $document->prepend([
     'tag' => 'hr'
 ]);
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)

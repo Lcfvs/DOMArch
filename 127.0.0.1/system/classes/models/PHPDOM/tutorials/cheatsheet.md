@@ -13,7 +13,7 @@ Cheatsheet
 * [Get the element source](#get-the-element-source)
 * [Get the node list source](#get-the-nodelist-source)
 
-[Tutorials summary](./index.md#summary)
+[Tutorials summary](./index.md#summary)<br />
 [Summary](../readme.md#summary)
 
 ## <a name="manipulate-the-title">Manipulate the title</a>
@@ -57,32 +57,32 @@ $script = $document->body->addScript('script.js', '/directory/');
 // /js/script.js
 $script = $document->body->addScript('script.js', null, [/* extra attributes */]);
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="add-a-class-on-an-element">Add a class on element</a>
 ````PHP
 $body = $document->body->addClass('class-name');
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="remove-a-class-on-an-element">Remove a class on an element</a>
 ````PHP
 $body = $document->body->removeClass('class-name');
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="remove-all-classes-on-an-element">Remove all classes on an element</a>
 ````PHP
 $body = $document->body->removeClass();
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="get-the-document-source">Get the document source</a>
@@ -92,8 +92,8 @@ $source = $document->__toString();
 // then you can make an echo on the document
 echo $document;
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="get-the-element-source">Get the element source</a>
@@ -103,8 +103,8 @@ $source = $document->body->__toString();
 // then you can make an echo on the element
 echo $document->body;
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="get-the-nodelist-source">Get the node list source</a>
@@ -114,6 +114,6 @@ $source = $document->body->selectAll('*')->__toString();
 // then you can make an echo on the node list
 echo $document->body->selectAll('*');
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)

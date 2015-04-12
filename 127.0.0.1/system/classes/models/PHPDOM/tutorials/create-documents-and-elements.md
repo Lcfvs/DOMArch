@@ -9,7 +9,7 @@ Create documents and elements
 * [Create a text node](#create-a-text-node)
 * [Create an element](#create-an-element)
 
-[Tutorials summary](./index.md#summary)
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 
@@ -20,8 +20,8 @@ $document = new \PHPDOM\HTML\Document();
 // or with the minimal code (HTML5)
 $document = new \PHPDOM\HTML\Document(true);
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="load-a-template">Load a template</a>
@@ -31,24 +31,24 @@ $document->loadHTML($source);
 // or from file
 $document->loadHTMLFile($filename);
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="load-a-fragment-template">Load a fragment template</a>
 ````PHP
 $fragment = $document->loadFragment($filename);
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="create-a-text-node">Create a text node</a>
 ````PHP
 $text_node = $document->create('Hello world');
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="create-an-element">Create an element</a>
@@ -57,8 +57,8 @@ $paragraph = $document->create([
     'tag' => 'p'
 ]);
 ````
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="create-element-and-children-at-once">Create element and children at once</a>
@@ -87,6 +87,6 @@ $paragraph = $document->create([
 ]);
 ````
 
-[Summary](#summary)
-[Tutorials summary](./index.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./index.md#summary)<br />
 [Main summary](../readme.md#summary)
