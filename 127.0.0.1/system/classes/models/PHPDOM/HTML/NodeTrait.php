@@ -65,12 +65,10 @@ trait NodeTrait
         }
         
         if (!empty($this->parentNode)) {
-            $parent = $this->parentNode;
+            $this->parentNode->insertBefore($node, $this);
         } else if (!empty($this->parent)) {
-            $parent = $this->parent;
+            $this->parent->insertBefore($node, $this);
         }
-        
-        $parent->insertBefore($node, $this);
 
         return $node;
     }
@@ -97,12 +95,10 @@ trait NodeTrait
         }
         
         if (!empty($this->parentNode)) {
-            $parent = $this->parentNode;
+            $this->parentNode->replaceChild($node, $this);
         } else if (!empty($this->parent)) {
-            $parent = $this->parent;
+            $this->parent->replaceChild($node, $this);
         }
-        
-        $parent->replaceChild($node, $this);
 
         return $node;
     }
