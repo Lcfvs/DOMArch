@@ -27,8 +27,8 @@ $document->title = 'title';
 // add some data to the title
 $document->title .= ' !!!';
 ````
-[Summary](#summary)
-[Tutorials summary](./readme.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="add-a-stylesheet">Add a stylesheet</a>
@@ -42,8 +42,8 @@ $link = $document->addStyleSheet('style.css', '/directory/');
 // /css/style.css
 $link = $document->addStyleSheet('style.css', null, [/* extra attributes */]);
 ````
-[Summary](#summary)
-[Tutorials summary](./readme.md#summary)
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
 ## <a name="add-a-script-on-an-element">Add a script on an element</a>
