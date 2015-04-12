@@ -15,8 +15,8 @@ class Master extends \PHPDOM\HTML\Document
         parent::__construct();
         
         $this->loadHTMLFile(SYSTEM_DIR . '/templates/documents/document.html');
-        $this->addLink('reset.css');
-        $this->addLink('style.css');
+        $this->addStyleSheet('reset.css');
+        $this->addStyleSheet('style.css');
         $this->body->addScript('script.js');
     }
     

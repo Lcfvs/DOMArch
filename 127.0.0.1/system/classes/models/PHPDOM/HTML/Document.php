@@ -245,15 +245,15 @@ class Document extends \DOMDocument
         }
     }
     
-    public function addLink($path, $directory = '/css/')
+    public function addStyleSheet($path, $directory = '/css/', $attributes = [])
     { 
-        return $this->select('head')->append([ 
+        return $this->select('head')->append(array_merge([ 
             'tag' => 'link', 
             'attributes' => [ 
                 'rel' => 'stylesheet', 
-                'href' => $directory . $path 
+                'href' => $directory . $path
             ] 
-        ]); 
+        ], $attributes); 
     }
     
     public function select($selector)
