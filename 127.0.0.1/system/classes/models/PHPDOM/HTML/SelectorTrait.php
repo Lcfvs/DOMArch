@@ -129,8 +129,6 @@ trait SelectorTrait
 
         $query = implode(',', $sub_queries);
 
-        SelectorTrait\Cache::set($selector, $query);
-        
-        return $query;
+        return SelectorTrait\Cache::set($selector, $query);
     }
 }

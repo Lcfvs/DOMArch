@@ -17,7 +17,7 @@ class Master extends \PHPDOM\HTML\Document
         $this->loadHTMLFile(SYSTEM_DIR . '/templates/documents/document.html');
         $this->addLink('reset.css');
         $this->addLink('style.css');
-        $this->addScript('script.js');
+        $this->body->addScript('script.js');
     }
     
     public function addHeader($path)

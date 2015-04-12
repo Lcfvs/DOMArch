@@ -10,8 +10,6 @@ namespace PHPDOM\HTML;
 
 class Document extends \DOMDocument
 {
-    use SelectorTrait;
-
     const DEFAULT_TEMPLATE = '<!DOCTYPE html><html><head><title></title></head><body></body></html>';
 
     // params
@@ -258,20 +256,6 @@ class Document extends \DOMDocument
         ]); 
     }
     
-    public function addScript($path, $directory = '/js/')
-    {
-        $script = $this->create([ 
-            'tag' => 'script', 
-            'attributes' => [ 
-                'src' => $directory . $path 
-            ] 
-        ]);
-        
-        $this->body->appendChild($script);
-        
-        return $script;
-    }
-
     public function select($selector)
     {
         return $this->documentElement->select($selector);
