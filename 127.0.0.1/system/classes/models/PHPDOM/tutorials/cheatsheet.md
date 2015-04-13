@@ -1,8 +1,8 @@
-# <a name="title"></a>PHPDOM
+# <a name="title">PHPDOM</a>
 
 Cheatsheet
 
-## <a name="summary"></a>Summary
+## <a name="summary">Summary</a>
 * [Manipulate the title](#manipulate-the-title)
 * [Add a stylesheet](#add-a-stylesheet)
 * [Add a script on an element](#add-a-script-on-an-element)

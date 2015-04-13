@@ -167,11 +167,7 @@ trait NodeTrait
             ] 
         ], $attributes);
         
-        if ($this instanceof Document) {
-            return $this->body->append($definition);
-        } else {
-            return $this->append($definition);
-        }
+        return $this->append($definition);
     }
     
     public function __toString()

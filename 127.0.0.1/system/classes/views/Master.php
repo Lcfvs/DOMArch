@@ -19,7 +19,7 @@ class Master extends \PHPDOM\HTML\Document
         $this->loadHTMLFile(SYSTEM_DIR . '/templates/documents/document.html');
         $this->addStyleSheet('reset.css');
         $this->addStyleSheet('style.css');
-        $this->body->addScript('script.js');
+        $this->select('head')->addScript('html5shiv.js');
     }
     
     public function addHeader($path)
@@ -28,8 +28,11 @@ class Master extends \PHPDOM\HTML\Document
         
         $this->body->appendChild($header); 
     }
+    
     public function __destruct()
     {
         \PHPDOM\HTML\SelectorCache::save();
+        
+        $this->body->addScript('script.js');
     }
 }

@@ -1,8 +1,8 @@
-# <a name="title"></a>PHPDOM
+# <a name="title">PHPDOM</a>
 
 Get the elements
 
-## <a name="summary"></a>Summary
+## <a name="summary">Summary</a>
 * [Get the document body](#get-the-document-body)
 * [Get the document forms](#get-the-document-forms)
 * [Get the document form elements](#get-the-document-form-elements)

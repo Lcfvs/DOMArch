@@ -1,8 +1,8 @@
-# <a name="title"></a>PHPDOM
+# <a name="title">PHPDOM</a>
 
 Append, insert, etc.
 
-## <a name="summary"></a>Summary
+## <a name="summary">Summary</a>
 * [Append an element](#append-an-element)
 * [Insert an element before another](#insert-an-element-before-another)
 * [Decorate an element](#decorate-an-element)
