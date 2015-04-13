@@ -8,6 +8,7 @@ Create documents and elements
 * [Load a fragment template](#load-a-fragment-template)
 * [Create a text node](#create-a-text-node)
 * [Create an element](#create-an-element)
+* [Create element and children at once](#create-element-and-children-at-once)
 
 [Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)

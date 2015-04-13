@@ -12,6 +12,7 @@ Cheatsheet
 * [Get the document source](#get-the-document-source)
 * [Get the element source](#get-the-element-source)
 * [Get the node list source](#get-the-nodelist-source)
+* [Set attribute at once on an element](#set-attributes-at-once-on-an-element)
 
 [Tutorials summary](./readme.md#summary)<br />
 [Summary](../readme.md#summary)
@@ -113,6 +114,17 @@ $source = $document->body->selectAll('*')->__toString();
 
 // then you can make an echo on the node list
 echo $document->body->selectAll('*');
+````
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
+[Main summary](../readme.md#summary)
+
+## <a name="set-attributes-at-once-on-an-element">Set attribute at once on an element</a>
+````PHP
+$body = $document->body->setAttributes([
+    'id' => 'body_id',
+    'class' => '.body_class'
+]);
 ````
 [Summary](#summary)<br />
 [Tutorials summary](./readme.md#summary)<br />
