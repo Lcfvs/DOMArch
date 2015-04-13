@@ -37,7 +37,7 @@ trait SelectorTrait
 
     private static function _parse($selector)
     {
-        $query = SelectorTrait\Cache::get($selector);
+        $query = SelectorCache::get($selector);
         
         if ($query) {
             return $query;
@@ -129,6 +129,6 @@ trait SelectorTrait
 
         $query = implode(',', $sub_queries);
 
-        return SelectorTrait\Cache::set($selector, $query);
+        return SelectorCache::set($selector, $query);
     }
 }

@@ -14,6 +14,8 @@ class Master extends \PHPDOM\HTML\Document
     {
         parent::__construct();
         
+        \PHPDOM\HTML\SelectorCache::load();
+        
         $this->loadHTMLFile(SYSTEM_DIR . '/templates/documents/document.html');
         $this->addStyleSheet('reset.css');
         $this->addStyleSheet('style.css');
@@ -25,5 +27,9 @@ class Master extends \PHPDOM\HTML\Document
         $header = $this->loadFragment($path);
         
         $this->body->appendChild($header); 
+    }
+    public function __destruct()
+    {
+        \PHPDOM\HTML\SelectorCache::save();
     }
 }
