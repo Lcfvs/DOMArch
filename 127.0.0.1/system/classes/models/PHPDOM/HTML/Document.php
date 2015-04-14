@@ -12,10 +12,11 @@ class Document extends \DOMDocument
 {
     const DEFAULT_TEMPLATE = '<!DOCTYPE html><html><head><title></title></head><body></body></html>';
 
-    // params
     public $formatOutput = false;
     public $standalone = true;
     public $preserveWhiteSpace = false;
+    
+    private $_bodyScripts = [];
 
     private $_xpath = null;
     private $_fields = ['input', 'select', 'textarea'];
@@ -256,6 +257,26 @@ class Document extends \DOMDocument
         ], $attributes)); 
     }
     
+    public function addHeadScript($path, $directory = '/css/', array $attributes = [])
+    { 
+        return $this->select('head')->addScript($path, $directory, $attributes); 
+    }
+    
+    public function addBodyScript($path, $directory = '/css/', array $attributes = [])
+    {
+        $definition = array_merge([ 
+            'tag' => 'script', 
+            'attributes' => [ 
+                'src' => $directory . $path 
+            ] 
+        ], $attributes);
+        
+        $script = $this->create($definition);
+        $this->_bodyScripts[] = $script;
+        
+        return $script; 
+    }
+    
     public function select($selector)
     {
         return $this->documentElement->select($selector);
@@ -292,7 +313,7 @@ class Document extends \DOMDocument
                 if ($node) {
                     $node->nodeValue = $value;
                 } else {
-                    $title->appendChild($this->createTextNode($value));
+                    $title->appendChild($this->create($value));
                 }
             break;
 
@@ -305,6 +326,12 @@ class Document extends \DOMDocument
 
     public function __toString()
     {
+        foreach ($this->_bodyScripts as $script) {
+            $this->body->appendChild($script);
+        }
+        
+        $this->_bodyScripts = [];
+        
         return substr($this->saveHTML(), 0, -1);
     }
 }

@@ -6,6 +6,8 @@ Cheatsheet
 * [Manipulate the title](#manipulate-the-title)
 * [Add a stylesheet](#add-a-stylesheet)
 * [Add a script on an element](#add-a-script-on-an-element)
+* [Add a script on the head](#add-a-script-on-the-head)
+* [Add a script on the body](#add-a-script-on-the-body)
 * [Add a class on an element](#add-a-class-on-an-element)
 * [Remove a class on an element](#remove-a-class-on-an-element)
 * [Remove all classes on an element](#remove-all-classes-on-an-element)
@@ -57,6 +59,37 @@ $script = $document->body->addScript('script.js', '/directory/');
 
 // /js/script.js
 $script = $document->body->addScript('script.js', null, [/* extra attributes */]);
+````
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
+[Main summary](../readme.md#summary)
+
+## <a name="add-a-script-on-the-head">Add a script on the head</a>
+````PHP
+// /js/script.js
+$script = $document->addHeadScript('script.js');
+
+// /directory/script.js
+$script = $document->addHeadScript('script.js', '/directory/');
+
+// /js/script.js
+$script = $document->addHeadScript('script.js', null, [/* extra attributes */]);
+````
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
+[Main summary](../readme.md#summary)
+
+## <a name="add-a-script-on-the-body">Add a script on the body</a>
+<strong>It really appends the body scripts when the document is stringified, to avoid this behavior, use the addScript method on the body, like any element.</strong>
+````PHP
+// /js/script.js
+$script = $document->addBodyScript('script.js');
+
+// /directory/script.js
+$script = $document->addBodyScript('script.js', '/directory/');
+
+// /js/script.js
+$script = $document->addBodyScript('script.js', null, [/* extra attributes */]);
 ````
 [Summary](#summary)<br />
 [Tutorials summary](./readme.md#summary)<br />
