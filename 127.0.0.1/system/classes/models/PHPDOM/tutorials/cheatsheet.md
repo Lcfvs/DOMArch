@@ -14,7 +14,9 @@ Cheatsheet
 * [Get the document source](#get-the-document-source)
 * [Get the element source](#get-the-element-source)
 * [Get the node list source](#get-the-nodelist-source)
-* [Set attribute at once on an element](#set-attributes-at-once-on-an-element)
+* [Set attributes at once on an element](#set-attributes-at-once-on-an-element)
+* [Remove attributes at once on an element](#remove-attributes-at-once-on-an-element)
+* [Get attributes at once on an element](#get-attributes-at-once-on-an-element)
 
 [Tutorials summary](./readme.md#summary)<br />
 [Summary](../readme.md#summary)
@@ -152,12 +154,40 @@ echo $document->body->selectAll('*');
 [Tutorials summary](./readme.md#summary)<br />
 [Main summary](../readme.md#summary)
 
-## <a name="set-attributes-at-once-on-an-element">Set attribute at once on an element</a>
+## <a name="set-attributes-at-once-on-an-element">Set attributes at once on an element</a>
 ````PHP
 $body = $document->body->setAttributes([
     'id' => 'body_id',
     'class' => '.body_class'
 ]);
+````
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
+[Main summary](../readme.md#summary)
+
+## <a name="remove-attributes-at-once-on-an-element">Remove attributes at once on an element</a>
+````PHP
+$body = $document->body->removeAttributes([
+    'id' => 'body_id',
+    'class' => '.body_class'
+]);
+
+// or 
+$body = $document->body->setAttributes([
+    'id' => null,
+    'class' => null
+]);
+
+// or to remove all attributes
+$body = $document->body->removeAttributes();
+````
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
+[Main summary](../readme.md#summary)
+
+## <a name="get-attributes-at-once-on-an-element">Get attributes at once on an element</a>
+````PHP
+$pairs = $document->body->getAttributes();
 ````
 [Summary](#summary)<br />
 [Tutorials summary](./readme.md#summary)<br />

@@ -118,46 +118,6 @@ trait NodeTrait
         return $node;
     }
 
-    public function addClass($name)
-    {
-        $this->removeClass($name);
-        
-        $class = $this->getAttribute('class');
-        
-        if ($class) {
-            $class->nodeValue .= ' ' . $name;
-        } else {
-            $this->setAttribute('class', $name);
-        }
-
-        return $node;
-    }
-
-    public function removeClass($name = null)
-    {
-        if (is_null($name)) {
-            $this->removeAttribute('class');
-            
-            return $this;
-        }
-        
-        $class = $this->getAttribute('class');
-        
-        if (empty($class)) {
-            return $node;
-        }
-        
-        $classes = trim(preg_plit('/((?:^|\s*)' . $name . '\s*)/', '', $class->nodeValue));
-        
-        if (empty($classes)) {
-            $this->removeAttribute('class');
-        } else {
-            $class->nodeValue = $classes;
-        }
-
-        return $node;
-    }
-    
     public function addScript($path, $directory = '/js/', array $attributes = [])
     {
         $definition = array_merge([ 

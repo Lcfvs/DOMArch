@@ -12,10 +12,84 @@ class Element extends \DOMElement
 {
     use NodeTrait;
 
+    public function addClass($name)
+    {
+        $this->removeClass($name);
+        
+        $class = $this->getAttribute('class');
+        
+        if ($class) {
+            $class->nodeValue .= ' ' . $name;
+        } else {
+            $this->setAttribute('class', $name);
+        }
+
+        return $node;
+    }
+
+    public function removeClass($name = null)
+    {
+        if (is_null($name)) {
+            $this->removeAttribute('class');
+            
+            return $this;
+        }
+        
+        $class = $this->getAttribute('class');
+        
+        if (empty($class)) {
+            return $node;
+        }
+        
+        $classes = trim(preg_plit('/((?:^|\s*)' . $name . '\s*)/', '', $class->nodeValue));
+        
+        if (empty($classes)) {
+            $this->removeAttribute('class');
+        } else {
+            $class->nodeValue = $classes;
+        }
+
+        return $node;
+    }
+    
     public function setAttributes($attributes)
     {
         foreach ($attributes as $name => $value) {
+            if (is_null($value)) {
+                $this->removeAttribute($name);
+                
+                continue;
+            }
+            
             $this->setAttribute($name, $value);
+        }
+
+        return $this;
+    }
+
+    public function getAttributes()
+    {
+        $attributes = [];
+        $attribute_list = $this->attributes;
+        $iterator = 0;
+        $length = $attribute_list->length;
+        
+        for (; $iterator < $length; $iterator += 1) {
+            $attribute = $attribute_list->item($iterator);
+            $attributes[$attribute->name] = $attribute->nodeValue;
+        }
+        
+        return $attributes;
+    }
+    
+    public function removeAttributes(array $names = null)
+    {
+        if (!is_null($names)) {
+            $names = array_keys($this->getAttributes());
+        }
+        
+        foreach ($names as $name) {
+            $this->removeAttribute($name);
         }
 
         return $this;
