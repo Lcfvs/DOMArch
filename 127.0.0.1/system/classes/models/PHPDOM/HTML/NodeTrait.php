@@ -19,7 +19,7 @@ trait NodeTrait
 
     public function decorate($definition)
     {
-        if ($definition instanceof self || $definition instanceof DocumentFragment) {
+        if ($this->isNode($definition)) {
             $node = $definition;
             
             if ($definition instanceof DocumentFragment) {
@@ -42,7 +42,7 @@ trait NodeTrait
 
     public function insert($definition, $before = null)
     {
-        if ($definition instanceof self || $definition instanceof DocumentFragment) {
+        if ($this->isNode($definition)) {
             $node = $definition;
             
             if ($definition instanceof DocumentFragment) {
@@ -52,7 +52,7 @@ trait NodeTrait
             $node = $this->ownerDocument->create($definition);
         }
 
-        if ($before instanceof self instanceof DocumentFragment) {
+        if ($this->isNode($before)) {
             $this->insertBefore($node, $before);
 
             return $node;
@@ -69,7 +69,7 @@ trait NodeTrait
 
     public function prepend($definition)
     {
-        if ($definition instanceof self || $definition instanceof DocumentFragment) {
+        if ($this->isNode($definition)) {
             $node = $definition;
             
             if ($definition instanceof DocumentFragment) {
@@ -128,6 +128,13 @@ trait NodeTrait
         ], $attributes);
         
         return $this->append($definition);
+    }
+    
+    public function isNode($value)
+    {
+        return $value instanceof self
+        || $value instanceof DocumentFragment
+        || $value instanceof Text;
     }
     
     public function __toString()

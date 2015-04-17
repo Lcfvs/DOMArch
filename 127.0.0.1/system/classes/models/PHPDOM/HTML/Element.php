@@ -11,6 +11,9 @@ namespace PHPDOM\HTML;
 class Element extends \DOMElement
 {
     use NodeTrait;
+    
+    private $_fields = ['input', 'select', 'textarea'];
+    private $_medias = ['audio', 'video'];
 
     public function addClass($name)
     {
@@ -52,15 +55,70 @@ class Element extends \DOMElement
         return $node;
     }
     
+    public function setAttribute($name, $value = null)
+    {
+        if (is_null($value)) {
+            return $this->removeAttribute($name);
+        }
+        
+        $tag = $this->nodeName;
+
+        switch ($tag) {
+            case 'script':
+                switch ($name) {
+                    case 'async':
+                    case 'defer':
+                        $value = $value ? $name : '';
+                    break;
+                }
+                
+            break;
+                
+            case 'track':
+                switch ($name) {
+                    case 'default':
+                        $value = $value ? $name : '';
+                    break;
+                }
+                
+            break;
+            
+            default:
+                if (in_array($tag, $this->_fields)) {
+                    switch ($name) {
+                        case 'autocomplete':
+                            $value = $value ? 'on' : 'off';
+                        break;
+
+                        case 'autofocus':
+                        case 'disabled':
+                        case 'readonly':
+                        case 'required':
+                        case 'multiple':
+                            $value = $value ? $name : '';
+                        break;
+                    }
+                } else if (in_array($tag, $this->_medias)) {
+                    switch ($name) {
+                        case 'autoplay':
+                        case 'defer':
+                        case 'controls':
+                        case 'loop':
+                        case 'muted':
+                            $value = $value ? $name : '';
+                        break;
+                    }
+                }
+        }
+        
+        parent::setAttribute($name, $value);
+        
+        return $this;
+    }
+    
     public function setAttributes($attributes)
     {
         foreach ($attributes as $name => $value) {
-            if (is_null($value)) {
-                $this->removeAttribute($name);
-                
-                continue;
-            }
-            
             $this->setAttribute($name, $value);
         }
 

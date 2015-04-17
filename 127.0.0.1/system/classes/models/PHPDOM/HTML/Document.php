@@ -19,8 +19,6 @@ class Document extends \DOMDocument
     private $_bodyScripts = [];
 
     private $_xpath = null;
-    private $_fields = ['input', 'select', 'textarea'];
-    private $_medias = ['audio', 'video'];
 
     private $_unbreakables = [
         'a', 'abbr', 'acronym', 'area', 'audio', 'b', 'base', 'bdi', 'bdo',
@@ -90,28 +88,32 @@ class Document extends \DOMDocument
         $type = gettype($definition);
         
         if ($type !== 'array' && $type !== 'object') {
-            return $this->createTextNode(strval($definition));
+            $definition = strval($definition);
+            $fragment = $this->createDocumentFragment();
+            $lines = preg_split('/\n\r?/', $definition);
+            
+            foreach ($lines as $key => $line) {
+                if ($key) {
+                    $fragment->append([
+                        'tag' => 'br'
+                    ]);
+                }
+                
+                $text_node = $this->createTextNode($line);
+                $fragment->append($text_node);
+            }
+            
+            return $fragment;
         }
     
         $normalized = $this->_normalize($definition);
         $tag = $normalized->tag;
         $data = $normalized->data;
-        $value = $normalized->value;
         $node = $this->createElement($tag);
         $node->setAttributes($normalized->attributes);
 
-        if (in_array($tag, $this->_fields)) {
-            if (!is_null($value)) {
-                $node->value = $value;
-            }
-        } else if (!empty($data)) {
-            foreach ($data as $key => $line) {
-                if ($key) {
-                    $node->appendChild($this->createElement('br'));
-                }
-
-                $node->appendChild($this->createTextNode($line));
-            }
+        if (!empty($data)) {
+            $node->append($data);
         }
         
         foreach ($normalized->children as $child) {
@@ -138,7 +140,7 @@ class Document extends \DOMDocument
         }
 
         if (!is_array($attributes)) {
-            $attributes = [];
+            $normalized->attributes = [];
         }
 
         switch (gettype($before)) {
@@ -151,80 +153,7 @@ class Document extends \DOMDocument
             break;
         }
 
-        switch ($tag) {
-            case 'script':
-                foreach ($attributes as $name => $value) {
-                    switch ($name) {
-                        case 'async':
-                        case 'defer':
-                            $attributes[$name] = $value ? $name : '';
-                        break;
-                    }
-                }
-                
-            break;
-                
-            case 'track':
-                foreach ($attributes as $name => $value) {
-                    switch ($name) {
-                        case 'default':
-                            $attributes[$name] = $value ? $name : '';
-                        break;
-                    }
-                }
-                
-            break;
-            
-            default:
-                if (in_array($tag, $this->_fields)) {
-                    $data = [];
-
-                    foreach ($attributes as $name => $value) {
-                        switch ($name) {
-                            case 'autocomplete':
-                                $attributes[$name] = $value ? 'on' : 'off';
-                            break;
-
-                            case 'autofocus':
-                            case 'disabled':
-                            case 'readonly':
-                            case 'required':
-                            case 'multiple':
-                                $attributes[$name] = $value ? $name : '';
-                            break;
-                        }
-                    }
-                } else if (in_array($tag, $this->_medias)) {
-                    foreach ($attributes as $name => $value) {
-                        switch ($name) {
-                            case 'autoplay':
-                            case 'defer':
-                            case 'controls':
-                            case 'loop':
-                            case 'muted':
-                                $attributes[$name] = $value ? $name : '';
-                            break;
-                        }
-                    }
-                } else {
-                    switch (gettype($data)) {
-                        case 'string':
-                            if (in_array($tag, $this->_unbreakables)) {
-                                $data = preg_split('/\n\r?/', $data);
-                            } else {
-                                $data = [$data];
-                            }
-                            
-                        break;
-
-                        default:
-                            $data = [];
-                    }
-                }
-        }
-
         $normalized->data = $data;
-        $normalized->attributes = $attributes;
 
         return $normalized;
     }
