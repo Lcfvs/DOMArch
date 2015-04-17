@@ -153,6 +153,22 @@ class Element extends \DOMElement
         return $this;
     }
 
+    public function matches($selector)
+    {
+        $node_list = $this->ownerDocument->selectAll($selector);
+        
+        $index = 0;
+        $length = $node_list->length;
+
+        for (; $index < $length; $index += 1) {
+            if ($this->isSameNode($node_list->item($index))) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
     public function __get($name)
     {
         switch ($name) {
