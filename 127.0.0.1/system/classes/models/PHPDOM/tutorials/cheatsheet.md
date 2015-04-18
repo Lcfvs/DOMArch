@@ -17,6 +17,9 @@ Cheatsheet
 * [Set attributes at once on an element](#set-attributes-at-once-on-an-element)
 * [Remove attributes at once on an element](#remove-attributes-at-once-on-an-element)
 * [Get attributes at once on an element](#get-attributes-at-once-on-an-element)
+* [Check if an element matches a selector](#check-if-an-element-matches-a-selector)
+* [Apply a callback on each node list elements](#apply-a-callback-on-each-nodelist-elements)
+* [Apply a callback on every node list elements](#apply-a-callback-on-every-nodelist-elements)
 
 [Tutorials summary](./readme.md#summary)<br />
 [Summary](../readme.md#summary)
@@ -188,6 +191,36 @@ $body = $document->body->removeAttributes();
 ## <a name="get-attributes-at-once-on-an-element">Get attributes at once on an element</a>
 ````PHP
 $pairs = $document->body->getAttributes();
+````
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
+[Main summary](../readme.md#summary)
+
+## <a name="check-if-an-element-matches-a-selector">Check if an element matches a selector</a>
+````PHP
+$boolean = $document->select('title')->matches('head > title');
+````
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
+[Main summary](../readme.md#summary)
+
+## <a name="apply-a-callback-on-each-nodelist-elements">Apply a callback on each node list elements</a>
+````PHP
+$result = $document->select('*')->each(function ($element, $index, $node_list) {
+    $element->setAttribute('id', 'element_' . $index);
+});
+````
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
+[Main summary](../readme.md#summary)
+
+## <a name="apply-a-callback-on-every-nodelist-elements">Apply a callback on every node list elements</a>
+````PHP
+$result = $document->select('*')->each(function ($element, $index, $node_list) {
+    $element->setAttribute('id', 'element_' . $index);
+
+    return $index < 3;
+});
 ````
 [Summary](#summary)<br />
 [Tutorials summary](./readme.md#summary)<br />
