@@ -17,9 +17,16 @@ class Master extends \PHPDOM\HTML\Document
         \PHPDOM\HTML\SelectorCache::load();
         
         $this->loadHTMLFile(SYSTEM_DIR . '/templates/documents/document.html');
-        $this->addStyleSheet('reset.css');
-        $this->addStyleSheet('style.css');
-        $this->addHeadScript('html5shiv.js');
+        
+        if (defined('NO_HTACCESS_HACK')) {
+            $this->addStyleSheet('reset.css', '?/css/');
+            $this->addStyleSheet('style.css', '?/css/');
+            $this->addHeadScript('html5shiv.js', '?/js/');
+        } else {
+            $this->addStyleSheet('reset.css');
+            $this->addStyleSheet('style.css');
+            $this->addHeadScript('html5shiv.js');
+        }
     }
     
     public function addHeader($path)
@@ -33,6 +40,10 @@ class Master extends \PHPDOM\HTML\Document
     {
         \PHPDOM\HTML\SelectorCache::save();
         
-        $this->addBodyScript('script.js');
+        if (defined('NO_HTACCESS_HACK')) {
+            $this->addBodyScript('script.js', '?/js/');
+        } else {
+            $this->addBodyScript('script.js');
+        }
     }
 }
