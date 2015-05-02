@@ -25,6 +25,7 @@ No problem, got a fallback.
     - Like [http://127.0.0.1/?/css/style.css](http://127.0.0.1/?/css/style.css)
     - Like [http://127.0.0.1/?/class_name/action?param=value](http://127.0.0.1/?/class_name/action?param=value)
 - Go to [http://127.0.0.1] (http://127.0.0.1)
+- Enjoy ;)
 
 
 ## <a name="how-it-matches-the-host-and-directory">How it matches the host and directory ?</a>
