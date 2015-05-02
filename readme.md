@@ -1,11 +1,9 @@
-DOMArch
-=======
+#DOMArch
 
 A PHP DOM micro-framework, based on [PHPDOM] (https://github.com/Lcfvs/PHPDOM)<br />
 
 
-Usage :
--------
+## Usage :
 
 - Put all files, directly on your /www
 - Enable the Apache Rewrite module
@@ -16,8 +14,7 @@ Usage :
 (No virtualhosts needed, the .htaccess detects the host and redirects the requests to the directory with the same name)
 
 
-No server config access ?
--------------------------
+## No server config access ?
 
 No problem, rename the `.htaccess` to `.htaccess.bak`.
 
@@ -25,6 +22,8 @@ And prefix all your urls by `?/`.
 
 Like [http://127.0.0.1/?/css/style.css](http://127.0.0.1/?/css/style.css)
 
+
+## License :
 
 This project is bi-MIT licensed.
 
