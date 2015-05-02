@@ -16,6 +16,16 @@ Usage :
 (No virtualhosts needed, the .htaccess detects the host and redirects the requests to the directory with the same name)
 
 
+No server config access ?
+-------------------------
+
+No problem, rename the `.htaccess` to `.htaccess.bak`.
+
+And prefix all your urls by `?/`.
+
+Like [http://127.0.0.1/?/css/style.css](http://127.0.0.1/?/css/style.css)
+
+
 This project is bi-MIT licensed.
 
 Copyright © 2008 - 2009 TJ Holowaychuk <tj@vision-media.ca><br />

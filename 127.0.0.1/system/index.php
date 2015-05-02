@@ -8,8 +8,12 @@ https://github.com/Lcfvs/DOMArch
 */
 require_once 'config.inc.php';
 
-$action = $_GET['action'];
+if (defined('NO_HTACCESS_HACK')) {
+    require_once NO_HTACCESS_HACK;
+}
+
 $class_name = ucfirst($_GET['class_name']);
+$action = $_GET['action'];
 
 $controller = 'Controllers\\' . $class_name;
 $view = 'Views\\' . $class_name;
