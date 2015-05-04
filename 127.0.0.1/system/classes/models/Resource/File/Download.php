@@ -50,10 +50,11 @@ class Download
         $offset = $this->_offset;
         $size = $this->_length;
         $length = $size - $offset;
+        $speed = $file->isChildOf(DOWNLOAD_DIR) ? DOWNLOAD_SPEED : $length;
         
         while ($length) {
-            if ($length > DOWNLOAD_SPEED) {
-                $length = DOWNLOAD_SPEED;
+            if ($length > $speed) {
+                $length = $speed;
             }
             
             $file->fseek($offset);
