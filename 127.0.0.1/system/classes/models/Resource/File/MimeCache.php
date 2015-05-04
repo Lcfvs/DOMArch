@@ -31,7 +31,7 @@ final class MimeCache
     {
         static::$_isUptoDate = false;
     
-        return self::$_cache{$extension} = $mime;
+        return self::$_cache->{$extension} = $mime;
     }
     
     public static function load()
@@ -92,7 +92,7 @@ final class MimeCache
         }
         
         static::$_isUptoDate = true;
-        static::$_cache = new StdClass();
+        static::$_cache = new \StdClass();
     }
     
     public static function save(\Resource\File $cache)
