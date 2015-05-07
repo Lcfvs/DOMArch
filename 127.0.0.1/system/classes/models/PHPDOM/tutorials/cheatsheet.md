@@ -20,6 +20,8 @@ Cheatsheet
 * [Check if an element matches a selector](#check-if-an-element-matches-a-selector)
 * [Apply a callback on each node list elements](#apply-a-callback-on-each-nodelist-elements)
 * [Apply a callback on every node list elements](#apply-a-callback-on-every-nodelist-elements)
+* [Save a document](#save-a-document)
+* [Save an element](#save-an-element)
 
 [Tutorials summary](./readme.md#summary)<br />
 [Summary](../readme.md#summary)
@@ -221,6 +223,22 @@ $result = $document->select('*')->each(function ($element, $index, $node_list) {
 
     return $index < 3;
 });
+````
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
+[Main summary](../readme.md#summary)
+
+## <a name="save-a-document">Save a document</a>
+````PHP
+$document = $document->save('path');
+````
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
+[Main summary](../readme.md#summary)
+
+## <a name="save-an-element">Save an element</a>
+````PHP
+$body = $document->body->save('path');
 ````
 [Summary](#summary)<br />
 [Tutorials summary](./readme.md#summary)<br />

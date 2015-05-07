@@ -136,6 +136,13 @@ trait NodeTrait
         || $value instanceof DocumentFragment
         || $value instanceof Text;
     }
+
+    public function save($path, $flags = null)
+    {
+        file_put_contents($path, $this, $flags);
+        
+        return $this;
+    }
     
     public function __toString()
     {

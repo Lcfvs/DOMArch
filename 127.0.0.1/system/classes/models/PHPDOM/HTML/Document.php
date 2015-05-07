@@ -216,6 +216,13 @@ class Document extends \DOMDocument
         return $this->documentElement->selectAll($selector);
     }
 
+    public function save($path, $flags = null)
+    {
+        file_put_contents($path, $this, $flags);
+        
+        return $this;
+    }
+
     public function __get($name)
     {
         switch ($name) {
