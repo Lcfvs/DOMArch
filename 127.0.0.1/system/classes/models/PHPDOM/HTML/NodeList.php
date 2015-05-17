@@ -20,7 +20,13 @@ class NodeList
     function __get($name)
     {
         if ($name === 'length') {
-            return $this->_nodeList->length;
+            $node_list = $this->_nodeList;
+            
+            if ($node_list) {
+                return $node_list->length;
+            }
+            
+            return 0;
         }
 
         throw new \Exception('Undefined property ' . $name);
@@ -61,6 +67,28 @@ class NodeList
         return $node;
     }
 
+    public function remove()
+    {
+        $iterator = 0;
+        $length = $this->length;
+        
+        if (!$length) {
+            return $this;
+        }
+        
+        $fragment = $this->item(0)->ownerDocument->createDocumentFragment();
+        
+        for (; $iterator < $length; $iterator += 1) {
+            $item = $this->item($iterator);
+            
+            if ($item) {
+                $fragment->appendChild($item);
+            }
+        }
+        
+        return $fragment->children();
+    }
+    
     public function __toString()
     {
         $data = '';

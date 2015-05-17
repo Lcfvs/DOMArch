@@ -13,7 +13,7 @@ class Index extends Master
     public function directoryIndex($items)
     {
         $body = $this->body;
-        $directory_index = $this->loadFragment('templates/fragments/directory-index.html');
+        $directory_index = $this->loadFragmentFile('templates/fragments/directory-index.html');
         
         $ul = $body->append($directory_index)->select('ul');
         

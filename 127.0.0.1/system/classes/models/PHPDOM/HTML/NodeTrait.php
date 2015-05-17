@@ -16,6 +16,28 @@ trait NodeTrait
     {
         return $this->insert($definition);
     }
+    
+    public function clean()
+    {
+        $this->normalize();
+        $items = $this->childNodes;
+        $iterator = 0;
+        
+        for (; $iterator < $items->length; $iterator += 1) {
+            $item = $items->item($iterator);
+            
+            $type = $item->nodeType;
+
+            if ($type === XML_COMMENT_NODE || ($type === XML_TEXT_NODE && preg_match('/^[\s\t\r\n]*$/', $item->nodeValue))) {
+                $item->remove();
+                $iterator -= 1;
+            } else if ($type === XML_ELEMENT_NODE || $type === XML_DOCUMENT_FRAG_NODE) {
+                $item->clean();
+            }
+        }
+        
+        return $this;
+    }
 
     public function decorate($definition)
     {
@@ -45,24 +67,22 @@ trait NodeTrait
         if ($this->isNode($definition)) {
             $node = $definition;
             
-            if ($definition instanceof DocumentFragment) {
+            if ($node instanceof DocumentFragment) {
                 $node->parent = $this;
             }
         } else {
             $node = $this->ownerDocument->create($definition);
         }
 
-        if ($this->isNode($before)) {
-            $this->insertBefore($node, $before);
-
-            return $node;
-        }
-
         if (gettype($before) === 'string') {
             $before = $this->select($before);
         }
         
-        $this->insertBefore($node, $before);
+        if ($node instanceof DocumentFragment && !$node->children()->length) {
+            @$this->insertBefore($node, $before);
+        } else {
+            $this->insertBefore($node, $before);
+        }
 
         return $node;
     }
@@ -72,18 +92,14 @@ trait NodeTrait
         if ($this->isNode($definition)) {
             $node = $definition;
             
-            if ($definition instanceof DocumentFragment) {
+            if ($node instanceof DocumentFragment) {
                 $node->parent = $this;
             }
         } else {
             $node = $this->ownerDocument->create($definition);
         }
         
-        if (!empty($this->parentNode)) {
-            $this->parentNode->insertBefore($node, $this);
-        } else if (!empty($this->parent)) {
-            $this->parent->insertBefore($node, $this);
-        }
+        $this->insert($node, $this->firstChild);
 
         return $node;
     }
@@ -117,6 +133,15 @@ trait NodeTrait
 
         return $node;
     }
+    
+    public function remove()
+    {
+        $fragment = $this->ownerDocument->createDocumentFragment();
+        
+        $fragment->appendChild($this);
+        
+        return $this;
+    }
 
     public function addScript($path, $directory = '/js/', array $attributes = [])
     {
@@ -137,15 +162,21 @@ trait NodeTrait
         || $value instanceof Text;
     }
 
-    public function save($path, $flags = null)
+    public function saveSource($filename, $flags = 0, $context = null)
     {
-        file_put_contents($path, $this, $flags);
+        file_put_contents($path, $this, $flags, $context);
         
         return $this;
     }
-    
+
     public function __toString()
     {
-        return $this->ownerDocument->saveHTML($this);
+        $owner_document = $this->ownerDocument;
+        
+        if (!$owner_document->formatOutput) {
+            $this->clean();
+        }
+        
+        return $owner_document->saveHTML($this);
     }
 }

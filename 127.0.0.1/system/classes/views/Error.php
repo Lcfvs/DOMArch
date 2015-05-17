@@ -11,7 +11,7 @@ namespace Views;
 class Error extends Master
 {
     public function notFound()
-    {echo 
+    {
         $this->_write('Not Found');
     }
     

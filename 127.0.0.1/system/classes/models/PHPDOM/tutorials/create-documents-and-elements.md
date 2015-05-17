@@ -28,9 +28,11 @@ $document = new \PHPDOM\HTML\Document(true);
 ## <a name="load-a-template">Load a template</a>
 ````PHP
 // from data
-$document->loadHTML($source);
-// or from file
-$document->loadHTMLFile($filename);
+$document->loadSource($source);
+// or from a local file
+$document->loadSourceFile($filename);
+// or from a remote file
+$document->loadSourceFile($filename, $libxml_options, $use_include_path, $context);
 ````
 [Summary](#summary)<br />
 [Tutorials summary](./readme.md#summary)<br />
@@ -38,7 +40,11 @@ $document->loadHTMLFile($filename);
 
 ## <a name="load-a-fragment-template">Load a fragment template</a>
 ````PHP
-$fragment = $document->loadFragment($filename);
+$fragment = $document->loadFragment($source);
+// or from a local file
+$document->loadFragmentFile($filename);
+// or from a remote file
+$document->loadFragmentFile($filename, $use_include_path, $context);
 ````
 [Summary](#summary)<br />
 [Tutorials summary](./readme.md#summary)<br />

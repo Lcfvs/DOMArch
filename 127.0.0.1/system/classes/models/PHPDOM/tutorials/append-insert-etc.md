@@ -8,6 +8,7 @@ Append, insert, etc.
 * [Decorate an element](#decorate-an-element)
 * [Prepend an element](#prepend-an-element)
 * [Replace an element](#replace-an-element)
+* [Remove an element](#remove-an-element)
 
 [Tutorials summary](./readme.md#summary)<br />
 [Summary](../readme.md#summary)
@@ -79,6 +80,14 @@ $section = $document->body->append([
 ]);
 
 $section = $header->replace($section);
+````
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
+[Main summary](../readme.md#summary)
+
+## <a name="remove-an-element">Remove an element</a>
+````PHP
+$section = $document->body->select('section')->remove();
 ````
 [Summary](#summary)<br />
 [Tutorials summary](./readme.md#summary)<br />

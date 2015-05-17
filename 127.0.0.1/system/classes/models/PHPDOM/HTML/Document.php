@@ -11,10 +11,6 @@ namespace PHPDOM\HTML;
 class Document extends \DOMDocument
 {
     const DEFAULT_TEMPLATE = '<!DOCTYPE html><html><head><title></title></head><body></body></html>';
-
-    public $formatOutput = false;
-    public $standalone = true;
-    public $preserveWhiteSpace = false;
     
     private $_bodyScripts = [];
 
@@ -39,13 +35,13 @@ class Document extends \DOMDocument
         $this->encoding = $encoding;
         
         if ($load_default_template) {
-            $this->loadHTML(static::DEFAULT_TEMPLATE);
+            $this->loadSource(static::DEFAULT_TEMPLATE);
         }
     }
     
-    public function loadHTML($source, $options = null)
+    public function loadSource($source, $options = null)
     {
-        @parent::loadHTML($source, $options);
+        @$this->loadHTML($source, $options);
 
         $encoding = $this->encoding;
         
@@ -53,6 +49,7 @@ class Document extends \DOMDocument
         $this->registerNodeClass('\\DOMNode', 'PHPDOM\\HTML\\Node');
         $this->registerNodeClass('\\DOMElement', 'PHPDOM\\HTML\\Element');
         $this->registerNodeClass('\\DOMText', 'PHPDOM\\HTML\\Text');
+        $this->registerNodeClass('\\DOMComment', 'PHPDOM\\HTML\\Comment');
         $this->registerNodeClass('\\DOMDocumentFragment', 'PHPDOM\\HTML\\DocumentFragment');
         
         $this->formatOutput = false;
@@ -76,11 +73,28 @@ class Document extends \DOMDocument
         return $this;
     }
 
-    public function loadHTMLFile($filename, $options = null)
+    public function loadSourceFile(
+        $filename,
+        $options = null,
+        $use_include_path = false,
+        $context = null,
+        $offset = -1,
+        $maxlen = null
+    )
     {
-        $source = file_get_contents($filename);
+        if (is_null($maxlen)) {
+            $maxlen = filesize($filename);
+        }
         
-        return $this->loadHTML($source);
+        $source = file_get_contents(
+            $filename,
+            $use_include_path,
+            $context,
+            $offset,
+            $maxlen
+        );
+
+        return $this->loadSource($source, $options);
     }
 
     public function create($definition)
@@ -158,10 +172,33 @@ class Document extends \DOMDocument
         return $normalized;
     }
 
-    public function loadFragment($path)
+    public function loadFragmentFile(
+        $filename,
+        $use_include_path = false,
+        $context = null,
+        $offset = -1,
+        $maxlen = null
+    )
+    {
+        if (is_null($maxlen)) {
+            $maxlen = filesize($filename);
+        }
+        
+        $source = file_get_contents(
+            $filename,
+            $use_include_path,
+            $context,
+            $offset,
+            $maxlen
+        );
+
+        return $this->loadFragment($source);
+    }
+
+    public function loadFragment($source)
     {
         $fragment = $this->createDocumentFragment();
-        $fragment->appendXML(file_get_contents($path));
+        @$fragment->appendXML($source);
 
         return $fragment;
     }
@@ -216,9 +253,9 @@ class Document extends \DOMDocument
         return $this->documentElement->selectAll($selector);
     }
 
-    public function save($path, $flags = null)
+    public function saveSource($filename, $flags = 0, $context = null)
     {
-        file_put_contents($path, $this, $flags);
+        file_put_contents($path, $this, $flags, $context);
         
         return $this;
     }
@@ -267,6 +304,10 @@ class Document extends \DOMDocument
         }
         
         $this->_bodyScripts = [];
+        
+        if (!$this->formatOutput) {
+            $this->documentElement->clean();
+        }
         
         return substr($this->saveHTML(), 0, -1);
     }

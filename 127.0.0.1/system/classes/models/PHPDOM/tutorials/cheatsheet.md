@@ -22,6 +22,7 @@ Cheatsheet
 * [Apply a callback on every node list elements](#apply-a-callback-on-every-nodelist-elements)
 * [Save a document](#save-a-document)
 * [Save an element](#save-an-element)
+* [Remove a node list](#remove-a-nodelist)
 
 [Tutorials summary](./readme.md#summary)<br />
 [Summary](../readme.md#summary)
@@ -239,6 +240,22 @@ $document = $document->save('path');
 ## <a name="save-an-element">Save an element</a>
 ````PHP
 $body = $document->body->save('path');
+````
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
+[Main summary](../readme.md#summary)
+
+## <a name="save-a-document">Save a document</a>
+````PHP
+$document = $document->save('path');
+````
+[Summary](#summary)<br />
+[Tutorials summary](./readme.md#summary)<br />
+[Main summary](../readme.md#summary)
+
+## <a name="remove-a-nodelist">Remove a node list</a>
+````PHP
+$child_nodes = $document->body->childNodes->remove();
 ````
 [Summary](#summary)<br />
 [Tutorials summary](./readme.md#summary)<br />

@@ -31,7 +31,7 @@ class Master extends \PHPDOM\HTML\Document
     
     public function addHeader($path)
     {
-        $header = $this->loadFragment($path);
+        $header = $this->loadFragmentFile($path);
         
         $this->body->appendChild($header); 
     }
