@@ -1,13 +1,11 @@
 # <a name="title">DOMArch</a>
 
-
-A PHP DOM micro-framework, based on [PHPDOM](https://github.com/Lcfvs/PHPDOM) and inspired on the MVC paradigm.
+Installation
 
 ## <a name="summary">Summary</a>
-* [Installation](./installation/readme.md#title)
-* [Reference](./reference/readme.md#title)
-* [Tutorials](./tutorials/readme.md#title)
-* [Licenses](#licenses)
+* [Install with Apache modules](./install-with-apache-modules#title)
+* [Install without Apache modules](./install-without-apache-modules#title)
+* [How DOMArch matches the host and directory](how-domarch-matches-the-host-and-directory)
 
 ## <a name="installation">Installation :</a>
 
@@ -32,9 +30,9 @@ No problem, got a fallback.
 - Go to [http://127.0.0.1] (http://127.0.0.1)
 - Enjoy ;)
 
-## <a name="license">License :</a>
 
-This project is bi-MIT licensed.
+## <a name="how-domarch-matches-the-host-and-directory">How DOMArch matches the host and directory ?</a>
 
-Copyright © 2008 - 2009 TJ Holowaychuk <tj@vision-media.ca><br />
-Copyright 2015 Lcf.vs
+On each user request, the `.htaccess` (or `DOMArch/index.php`) detects the host and if a directory has the same name and contains a `./system/index.php`, it redirects the query to that file.
+
+Then each server known host (in the OS `hosts` file) can redirect to its own directory.

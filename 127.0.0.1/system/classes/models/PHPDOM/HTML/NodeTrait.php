@@ -12,7 +12,7 @@ trait NodeTrait
 {
     use SelectorTrait;
     
-    public function append($definition)
+    public function append($definition = [])
     {
         return $this->insert($definition);
     }
@@ -39,7 +39,7 @@ trait NodeTrait
         return $this;
     }
 
-    public function decorate($definition)
+    public function decorate($definition = [])
     {
         if ($this->isNode($definition)) {
             $node = $definition;
@@ -62,7 +62,7 @@ trait NodeTrait
         return $node;
     }
 
-    public function insert($definition, $before = null)
+    public function insert($definition = [], $before = null)
     {
         if ($this->isNode($definition)) {
             $node = $definition;
@@ -87,7 +87,7 @@ trait NodeTrait
         return $node;
     }
 
-    public function prepend($definition)
+    public function prepend($definition = [])
     {
         if ($this->isNode($definition)) {
             $node = $definition;

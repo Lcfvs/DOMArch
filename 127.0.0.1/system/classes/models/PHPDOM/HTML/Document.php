@@ -97,7 +97,7 @@ class Document extends \DOMDocument
         return $this->loadSource($source, $options);
     }
 
-    public function create($definition)
+    public function create($definition = [])
     {
         $type = gettype($definition);
         
@@ -119,12 +119,16 @@ class Document extends \DOMDocument
             
             return $fragment;
         }
-    
-        $normalized = $this->_normalize($definition);
-        $tag = $normalized->tag;
+        
+        if (empty($normalized->tag) {
+            $node = $this->createDocumentFragment();
+        } else {
+            $normalized = $this->_normalize($definition);
+            $node = $this->createElement($normalized->tag);
+            $node->setAttributes($normalized->attributes);
+        }
+        
         $data = $normalized->data;
-        $node = $this->createElement($tag);
-        $node->setAttributes($normalized->attributes);
 
         if (!empty($data)) {
             $node->append($data);
@@ -144,7 +148,7 @@ class Document extends \DOMDocument
         $attributes = @$normalized->attributes;
         $before = @$normalized->before;
         $data = @$normalized->data;
-        $tag = @$normalized->tag;
+        $tag = (string) @$normalized->tag;
         $children = @$normalized->children;
         @$normalized->value =
         $value = @$normalized->value;
