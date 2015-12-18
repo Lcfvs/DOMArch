@@ -4,27 +4,27 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
-	# host/public
-	RewriteCond %{ENV:REDIRECT_REDIRECTED} ^$
-	RewriteCond %{REQUEST_URI} ^/[^/]+(/.+)$
+    # host/public
+    RewriteCond %{ENV:REDIRECT_REDIRECTED} ^$
+    RewriteCond %{REQUEST_URI} ^/[^/]+(/.+)$
     RewriteCond %{DOCUMENT_ROOT}/%{HTTP_HOST}/public%1 -f
     RewriteRule . ./public/%1 [L,QSA]
     
     # host/
-	RewriteCond %{ENV:REDIRECT_REDIRECTED} ^$
+    RewriteCond %{ENV:REDIRECT_REDIRECTED} ^$
     RewriteRule ^$ ./system/?class_name=Index&action=indexAction [L,QSA]
     
     # host/class_name/
-	RewriteCond %{ENV:REDIRECT_REDIRECTED} ^$
+    RewriteCond %{ENV:REDIRECT_REDIRECTED} ^$
     RewriteRule ^/([\w\d-]+)\/?$ ./system/?class_name=$1&action=indexAction [L,QSA]
-	
+    
     # host/class_name/action
-	RewriteCond %{ENV:REDIRECT_REDIRECTED} ^$
+    RewriteCond %{ENV:REDIRECT_REDIRECTED} ^$
     RewriteRule ^([\w\d-]+)\/([\w\d-]+) ./system/?class_name=$1&action=$2Action&abc=1323 [L,QSA]
-	
+    
     # not-found
-	RewriteCond %{ENV:REDIRECT_REDIRECTED} ^$
+    RewriteCond %{ENV:REDIRECT_REDIRECTED} ^$
     RewriteRule . ./system/?class_name=Error&action=notFound [L,QSA]
-	
-	SetEnvIf REQUEST_URI . REDIRECTED=1
+    
+    SetEnvIf REQUEST_URI . REDIRECTED=1
 </IfModule>
