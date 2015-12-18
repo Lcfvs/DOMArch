@@ -18,12 +18,12 @@ $action = $_GET['action'];
 $controller = 'Controllers\\' . $class_name;
 $view = 'Views\\' . $class_name;
 
-$has_dependencies = $_GET['class_name'] !== 'master'
-&& is_readable(__DIR__ . '/classes/Controllers/' . $class_name . '.php')
-&& is_readable(__DIR__ . '/classes/Views/' . $class_name . '.php')
-&& (new ReflectionMethod($controller, $action))->isPublic();
-
-if (!$has_dependencies) {
+try {
+	$has_dependencies = $_GET['class_name'] !== 'master'
+	&& is_readable(__DIR__ . '/classes/Controllers/' . $class_name . '.php')
+	&& is_readable(__DIR__ . '/classes/Views/' . $class_name . '.php')
+	&& (new ReflectionMethod($controller, $action))->isPublic();
+} catch(Exception $exception) {
     $action = 'notFoundAction';
     $controller = 'Controllers\\Error';
     $view = 'Views\\Error';

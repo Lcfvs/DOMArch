@@ -24,7 +24,7 @@
     
     # not-found
     RewriteCond %{ENV:REDIRECT_REDIRECTED} ^$
-    RewriteRule . ./system/?class_name=Error&action=notFound [L,QSA]
+    RewriteRule . ./system/?class_name=Error&action=notFoundAction [L,QSA]
     
     SetEnvIf REQUEST_URI . REDIRECTED=1
 </IfModule>
