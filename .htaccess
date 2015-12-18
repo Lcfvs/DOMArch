@@ -4,21 +4,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
-    # host/public
-    RewriteCond %{DOCUMENT_ROOT}%{HTTP_HOST}/public%{REQUEST_URI} -f
-    RewriteRule (.*) %{HTTP_HOST}/public/$1 [L,QSA]
-    
-    RewriteCond %{DOCUMENT_ROOT}%{HTTP_HOST}/public%{REQUEST_URI} !-f
-    
-    # host/
-    RewriteRule ^$ %{HTTP_HOST}/system/?class_name=Index&action=indexAction [L,QSA]
-    
-    # host/class_name/
-    RewriteRule ^([\w\d-]+)\/?$ %{HTTP_HOST}/system/?class_name=$1&action=indexAction [L,QSA]
-    
-    # host/class_name/action
-    RewriteRule ^([\w\d-]+)\/([\w\d-]+) %{HTTP_HOST}/system/?class_name=$1&action=$2Action [L,QSA]
-    
     RewriteCond %{ENV:REDIRECT_REDIRECTED} !1
     RewriteCond %{DOCUMENT_ROOT}%{HTTP_HOST} -d
     RewriteRule (.*) %{HTTP_HOST}/$1 [L,QSA]
