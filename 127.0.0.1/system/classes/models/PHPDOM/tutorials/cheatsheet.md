@@ -162,7 +162,7 @@ echo $document->body->selectAll('*');
 
 ## <a name="set-attributes-at-once-on-an-element">Set attributes at once on an element</a>
 ````PHP
-$body = $document->body->setAttributes([
+$body = $document->body->setAttr([
     'id' => 'body_id',
     'class' => '.body_class'
 ]);
@@ -173,19 +173,19 @@ $body = $document->body->setAttributes([
 
 ## <a name="remove-attributes-at-once-on-an-element">Remove attributes at once on an element</a>
 ````PHP
-$body = $document->body->removeAttributes([
+$body = $document->body->removeAttr([
     'id' => 'body_id',
     'class' => '.body_class'
 ]);
 
 // or 
-$body = $document->body->setAttributes([
+$body = $document->body->setAttr([
     'id' => null,
     'class' => null
 ]);
 
 // or to remove all attributes
-$body = $document->body->removeAttributes();
+$body = $document->body->removeAttr();
 ````
 [Summary](#summary)<br />
 [Tutorials summary](./readme.md#summary)<br />
@@ -209,7 +209,7 @@ $boolean = $document->select('title')->matches('head > title');
 
 ## <a name="apply-a-callback-on-each-nodelist-elements">Apply a callback on each node list elements</a>
 ````PHP
-$result = $document->select('*')->each(function ($element, $index, $node_list) {
+$result = $document->selectAll('*')->each(function ($element, $index, $node_list) {
     $element->setAttribute('id', 'element_' . $index);
 });
 ````
@@ -219,7 +219,7 @@ $result = $document->select('*')->each(function ($element, $index, $node_list) {
 
 ## <a name="apply-a-callback-on-every-nodelist-elements">Apply a callback on every node list elements</a>
 ````PHP
-$result = $document->select('*')->each(function ($element, $index, $node_list) {
+$result = $document->selectAll('*')->each(function ($element, $index, $node_list) {
     $element->setAttribute('id', 'element_' . $index);
 
     return $index < 3;

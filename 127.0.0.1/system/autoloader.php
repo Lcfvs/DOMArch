@@ -10,8 +10,9 @@ function __autoload($class_name) {
     $class_name = ltrim($class_name, '\\');
     $file_name = '';
     $namespace = '';
+	$position = strripos($class_name, '\\');
 
-    if ($position = strripos($class_name, '\\')) {
+    if ($position) {
         $namespace = substr($class_name, 0, $position);
         $class_name = substr($class_name, $position + 1);
         $file_name = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;

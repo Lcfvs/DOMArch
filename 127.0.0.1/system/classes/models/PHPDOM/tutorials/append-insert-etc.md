@@ -17,10 +17,10 @@ Append, insert, etc.
 ````PHP
 $hgroup = $document->body->append([
     'tag' => 'hgroup',
-    'children' => [
+    'children' => [[
         'tag' => 'h2',
         'data' => 'Second body title'
-    ]
+    ]]
 ]);
 ````
 [Summary](#summary)<br />

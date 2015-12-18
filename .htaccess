@@ -1,6 +1,6 @@
 #Copyright 2015 Lcf.vs
 #Released under the MIT license
-#https://github.com/Lcfvs/PHPDOM
+#https://github.com/Lcfvs/DOMArch
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
@@ -9,7 +9,6 @@
     RewriteRule (.*) %{HTTP_HOST}/public/$1 [L,QSA]
     
     RewriteCond %{DOCUMENT_ROOT}%{HTTP_HOST}/public%{REQUEST_URI} !-f
-    RewriteCond %{DOCUMENT_ROOT}%{HTTP_HOST}/system/index.php -f
     
     # host/
     RewriteRule ^$ %{HTTP_HOST}/system/?class_name=Index&action=indexAction [L,QSA]

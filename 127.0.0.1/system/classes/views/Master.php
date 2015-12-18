@@ -16,7 +16,7 @@ class Master extends \PHPDOM\HTML\Document
         
         \PHPDOM\HTML\SelectorCache::load();
         
-        $this->loadHTMLFile(SYSTEM_DIR . '/templates/documents/document.html');
+        $this->loadSourceFile(SYSTEM_DIR . '/templates/documents/document.html');
         
         if (defined('NO_HTACCESS_HACK')) {
             $this->addStyleSheet('reset.css', '?/css/');

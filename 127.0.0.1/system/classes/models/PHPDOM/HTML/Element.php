@@ -14,45 +14,31 @@ class Element extends \DOMElement
     
     private $_fields = ['input', 'select', 'textarea'];
     private $_medias = ['audio', 'video'];
+	private $_classList;
+	private $_dataset;
 
     public function addClass($name)
     {
-        $this->removeClass($name);
-        
-        $class = $this->getAttribute('class');
-        
-        if ($class) {
-            $class->nodeValue .= ' ' . $name;
-        } else {
-            $this->setAttribute('class', $name);
-        }
+		trigger_error(
+			'Element::addClass is deprecated, use Element::classList::add() instead',
+			E_USER_DEPRECATED
+		);
+		
+        $this->classList->add($name);
 
-        return $node;
+        return $this;
     }
 
     public function removeClass($name = null)
     {
-        if (is_null($name)) {
-            $this->removeAttribute('class');
-            
-            return $this;
-        }
-        
-        $class = $this->getAttribute('class');
-        
-        if (empty($class)) {
-            return $node;
-        }
-        
-        $classes = trim(preg_plit('/((?:^|\s*)' . $name . '\s*)/', '', $class->nodeValue));
-        
-        if (empty($classes)) {
-            $this->removeAttribute('class');
-        } else {
-            $class->nodeValue = $classes;
-        }
-
-        return $node;
+		trigger_error(
+			'Element::removeClass is deprecated, use Element::classList::remove() instead',
+			E_USER_DEPRECATED
+		);
+		
+        $this->classList->remove($name);
+		
+		return $this;
     }
     
     public function setAttribute($name, $value = null)
@@ -116,7 +102,7 @@ class Element extends \DOMElement
         return $this;
     }
     
-    public function setAttributes($attributes)
+    public function setAttr($attributes)
     {
         foreach ($attributes as $name => $value) {
             $this->setAttribute($name, $value);
@@ -125,7 +111,7 @@ class Element extends \DOMElement
         return $this;
     }
 
-    public function getAttributes()
+    public function getAttr()
     {
         $attributes = [];
         $attribute_list = $this->attributes;
@@ -140,10 +126,10 @@ class Element extends \DOMElement
         return $attributes;
     }
     
-    public function removeAttributes(array $names = null)
+    public function removeAttr(array $names = null)
     {
         if (!is_null($names)) {
-            $names = array_keys($this->getAttributes());
+            $names = array_keys($this->getAttr());
         }
         
         foreach ($names as $name) {
@@ -172,6 +158,26 @@ class Element extends \DOMElement
     public function __get($name)
     {
         switch ($name) {
+            case 'classList':
+				$class_list = $this->_classList;
+				
+                if ($class_list) {
+					return $class_list;
+                }
+				
+				
+				return $this->_classList = new ClassList($this);
+				
+            case 'dataset':
+				$dataset = $this->_dataset;
+				
+                if ($dataset) {
+					return $dataset;
+                }
+				
+				
+				return $this->_dataset = new Dataset($this);
+				
             case 'elements':
                 if ($this->nodeName === 'form') {
                     return $this->selectAll('input, select, textarea');
