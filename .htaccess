@@ -4,6 +4,9 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
-    RewriteCond %{DOCUMENT_ROOT}/%{HTTP_HOST} -d
-    RewriteRule (.*) %{HTTP_HOST}/$1 [L,QSA]
+    #RewriteCond %{ENV:REDIRECT_REDIRECTED} !1
+    #RewriteCond %{DOCUMENT_ROOT}%{HTTP_HOST} -d
+    RewriteRule (.*) %{HTTP_HOST}$1 [L,QSA]
+    
+    #SetEnvIf REQUEST_URI . REDIRECTED=1
 </IfModule>
