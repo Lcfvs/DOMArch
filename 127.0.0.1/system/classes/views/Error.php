@@ -29,4 +29,4 @@ class Error extends Master
             'data' => $text
         ]);
     }
-};
+}

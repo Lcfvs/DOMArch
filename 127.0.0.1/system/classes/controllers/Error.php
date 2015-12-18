@@ -10,6 +10,11 @@ namespace Controllers;
 
 class Error extends Master
 {
+    public function notFound($method, $arguments)
+    {
+        $this->_view->notFound();
+    }
+	
     public function __call($method, $arguments)
     {
         $method = str_replace('Action', '', $method);
