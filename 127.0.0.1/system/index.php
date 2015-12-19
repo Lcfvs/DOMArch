@@ -23,6 +23,10 @@ try {
 	&& is_readable(__DIR__ . '/classes/Controllers/' . $class_name . '.php')
 	&& is_readable(__DIR__ . '/classes/Views/' . $class_name . '.php')
 	&& (new ReflectionMethod($controller, $action))->isPublic();
+    
+    if (!$has_dependencies) {
+        throw new Exception();
+    }
 } catch(Exception $exception) {
     $action = 'notFoundAction';
     $controller = 'Controllers\\Error';
