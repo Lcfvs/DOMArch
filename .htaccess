@@ -4,9 +4,21 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
-    #RewriteCond %{ENV:REDIRECT_REDIRECTED} !1
-    #RewriteCond %{DOCUMENT_ROOT}%{HTTP_HOST} -d
-    RewriteRule (.*) %{HTTP_HOST}$1 [L,QSA]
+    # [sub.]127.0.0.1
+	RewriteCond %{ENV:REDIRECT_STATUS} ^$
+	RewriteCond %{HTTP_HOST} (\d+\.\d+\.\d+\.\d+)$
+    RewriteCond %{DOCUMENT_ROOT}/%1 -d
+    RewriteRule (.*) %1/$1 [L,QSA]
     
-    #SetEnvIf REQUEST_URI . REDIRECTED=1
+    # [sub.]domain.tld
+	RewriteCond %{ENV:REDIRECT_STATUS} ^$
+	RewriteCond %{HTTP_HOST} ([a-z\d-]+\.[a-z\d]+)$
+    RewriteCond %{DOCUMENT_ROOT}/%1 -d
+    RewriteRule (.*) %1/$1 [L,QSA]
+    
+    # [sub.]domain
+	RewriteCond %{ENV:REDIRECT_STATUS} ^$
+	RewriteCond %{HTTP_HOST} ([a-z\d-]+)$
+    RewriteCond %{DOCUMENT_ROOT}/%1 -d
+    RewriteRule (.*) %1/$1 [L,QSA]
 </IfModule>
