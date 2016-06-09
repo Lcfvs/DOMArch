@@ -1,0 +1,13 @@
+{
+  "name": "Lcfvs/PHPDOM",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Lcfvs",
+      "email": "michael.rouges@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0"
+  }
+}
