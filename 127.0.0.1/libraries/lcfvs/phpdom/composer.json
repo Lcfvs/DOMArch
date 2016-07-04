@@ -1,0 +1,21 @@
+{
+    "name": "lcfvs/phpdom",
+    "description": "A PHP DOM tool, based on a revised version of php-selector",
+    "type": "library",
+    "require": {
+        "php": ">=5.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lcfvs",
+            "email": "michael.rouges@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "PHPDOM\\": "lib/"
+        }
+    }
+}
