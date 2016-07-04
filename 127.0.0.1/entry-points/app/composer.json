@@ -1,0 +1,21 @@
+{
+  "name": "dom-arch/website",
+  "license": "MIT",
+  "autoload": {
+    "files": ["../../libraries/lcfvs/dom-arch/lib/dump.php"],
+    "classmap": ["classes/Entities"],
+    "psr-4": {
+      "Assemblies\\": "classes/Assemblies",
+      "Lib\\": "classes/Lib",
+      "Modules\\": "classes/Modules",
+      "Repositories\\": "classes/Repositories",
+      "Providers\\": "classes/Providers",
+      "DOMArch\\": "../../libraries/lcfvs/dom-arch",
+      "PHPDOM\\": "../../libraries/lcfvs/phpdom",
+      "Indoctrinated\\": "../../libraries/lcfvs/indoctrinated"
+    }
+  },
+  "require": {
+    "php": ">=7.0.0"
+  }
+}

@@ -1,0 +1,52 @@
+<?php
+
+
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Translations
+ *
+ * @ORM\Table(name="Translations")
+ * @ORM\Entity(repositoryClass="Repositories\Translations")
+ */
+class Translations extends \Lib\ORM\Entity
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="format", type="text", length=65535, nullable=false)
+     */
+    protected $format;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isTranslated", type="boolean", nullable=true)
+     */
+    protected $isTranslated = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="en", type="text", length=65535, nullable=false)
+     */
+    protected $en;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fr", type="text", length=65535, nullable=false)
+     */
+    protected $fr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nl", type="text", length=65535, nullable=false)
+     */
+    protected $nl;
+
+
+}
+

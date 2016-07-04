@@ -1,0 +1,24 @@
+{
+  "name": "form.cheats.editable",
+  "version": "1.0.0",
+  "description": "form.cheats plugin for editable views",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lcfvs/form.cheats.editable.git"
+  },
+  "keywords": [
+    "CSS",
+    "HTML",
+    "form",
+    "style",
+    "cheat",
+    "plugin",
+    "editable"
+  ],
+  "author": "Lcf.vs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lcfvs/form.cheats.editable/issues"
+  },
+  "homepage": "https://github.com/Lcfvs/form.cheats.editable#readme"
+}

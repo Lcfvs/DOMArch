@@ -1,0 +1,63 @@
+{
+  "common": {
+    "locales": ["en", "fr", "nl"],
+    "directories": {
+      "cache": "./cache",
+      "public": "./public",
+      "templates": "./templates"
+    },
+    "encryptionKey": "/DmfINGU3oM4xdm+Z023BeFN2r0LCGROYsxnOpegjy6kqx+WSQeGxpidiHlxQ80p/YujswsF6MCzRJTrfYknQ8C6BovuEIYorcHM5jHph8KaaerVmUsz769U2JDhZucJ5rjGBBmBPyky5tL1Ein6W18ULxOwjWIF2LtipwtPA+9mPtvEykwLB4+cVMMB8K9u72hDNarFQ1UTBVH3uCX85+Z",
+    "urlPrefixes": {
+      "current": "http://app.domain.tld",
+      "website": "http://domain.tld"
+    },
+    "maxFileSize": 4194304
+  },
+  "cli": {
+    "isDevMode": true,
+    "entities": {
+      "class": "Lib\\ORM\\Entity",
+      "directory": "./classes/Entities",
+      "type": "annotation"
+    },
+    "repositories": {
+      "directory": "./classes"
+    },
+    "orm": {
+      "dbname": "domain-tld-app",
+      "driver": "pdo_mysql",
+      "host": "127.0.0.1",
+      "user": "root",
+      "password": "",
+      "charset": "utf8",
+      "driverOptions": {
+        "1002": "SET NAMES utf8"
+      }
+    }
+  },
+  "web": {
+    "isDevMode": true,
+    "entities": {
+      "directory": "./classes/Entities"
+    },
+    "orm": {
+      "dbname": "domain-tld-app",
+      "driver": "pdo_mysql",
+      "host": "127.0.0.1",
+      "user": "root",
+      "password": "",
+      "charset": "utf8",
+      "driverOptions": {
+        "1002": "SET NAMES utf8"
+      }
+    },
+    "service": {
+      "url": "http://service.domain.tld",
+      "key": "44DfpPommeDRN+Ea+FFh2qP41O8RYU9SO0GnJrCGtK+I41hHWxTyDzUOvQuqPaJcUjhk9aauQ38902NLH6pQazYdKjT33IQuhGwdtJ38SSgaIrIOWbt1hIn+nFQMjYxsZZ+gWOP0MhH8zNN2Ky6Pj0HrnvZeFw9CuMsPEYv4zBUe7eWtsVi+rsEBxSeNPAO7Wg5wnsZ1824ayOJvGF3xciW4hnWQrIkwpO/jx4TzgQKXNY8f7uCkNThqwX",
+      "token": {
+        "name": "X-SERVER-TOKEN",
+        "value": "BPOL/R/20N8lPX5tefFRYIv0PvbK400nr+kQWajPY089f01iXhioxb5NWJOhIc4p7jYx599"
+      }
+    }
+  }
+}

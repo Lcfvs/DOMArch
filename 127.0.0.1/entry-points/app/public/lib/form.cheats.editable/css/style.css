@@ -1,0 +1,60 @@
+/*
+Copyright MIT 2016 Lcf.vs
+https://github.com/Lcfvs/form.cheats
+*/
+form.editable .edit,
+form.editable [type="submit"],
+form.editable [type="reset"] {
+    float: right;
+}
+
+form.editable:not(.enabled) .edit,
+form.editable.enabled [type="submit"],
+form.editable.enabled [type="reset"] {
+    display: inline-block;
+}
+
+form.editable.enabled .edit,
+form.editable:not(.enabled) [type="submit"].save,
+form.editable:not(.enabled) [type="reset"],
+form.editable [disabled="disabled"] [type="submit"],
+form.editable [disabled="disabled"] [type="checkbox"]:not(:checked) + label,
+form.editable [disabled="disabled"] [type="radio"]:not(:checked) + label,
+form.editable [disabled="disabled"] [type="checkbox"] + label:before,
+form.editable [disabled="disabled"] [type="radio"] + label:before {
+    display: none;
+}
+
+form.editable [disabled="disabled"] input,
+form.editable [disabled="disabled"] select,
+form.editable [disabled="disabled"] textarea,
+form.editable [disabled="disabled"] [type="checkbox"]:checked + label,
+form.editable [disabled="disabled"] [type="radio"]:checked + label {
+    color: inherit;
+}
+
+form.editable [disabled="disabled"] input,
+form.editable [disabled="disabled"] select,
+form.editable [disabled="disabled"] textarea {
+    width: 100%;
+    border-color: transparent;
+    background-color: transparent;
+    text-indent: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+form.editable [disabled="disabled"] select {
+    margin-left: -.25em;
+}
+
+:not(*:root) form.editable [disabled="disabled"] select {
+    margin-left: 0;
+}
+
+form.cheats [disabled="disabled"] input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="reset"]):not([type="submit"]),
+form.cheats [disabled="disabled"] select,
+form.cheats [disabled="disabled"] textarea {
+    padding: 0;
+}

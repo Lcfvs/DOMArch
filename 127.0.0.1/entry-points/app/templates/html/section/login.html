@@ -1,0 +1,22 @@
+<section class="login">
+    <h1>login-title</h1>
+    <form class="cheats" method="post">
+        <fieldset>
+            <p class="account">
+                <label for="account">account-label</label>
+                <input id="account" name="account" type="text" pattern="^[a-zA-Z][a-zA-Z0-9_\.]{1,20}$" placeholder="account-placeholder" required="required" />
+            </p>
+            <p class="password">
+                <label for="password">password-label</label>
+                <input id="password" name="password" type="password" pattern="^.{8,}$" placeholder="●●●●●●●●●●●●" required="required" />
+            </p>
+            <p class="remind">
+                <input id="reminder" name="reminder" type="checkbox" value="1" />
+                <label for="reminder">login-reminder</label>
+            </p>
+            <p>
+                <button class="fa" type="submit">submit-button</button>
+            </p>
+        </fieldset>
+    </form>
+</section>

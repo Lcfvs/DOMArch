@@ -1,0 +1,120 @@
+/*
+Copyright MIT 2016 Lcf.vs
+https://github.com/Lcfvs/form.cheats
+*/
+form.cheats {
+    outline: none;
+}
+
+form.cheats fieldset,
+form.cheats legend,
+form.cheats p {
+    border: none;
+    text-indent: 0;
+    margin: 0;
+    padding: 0;
+}
+
+form.cheats fieldset + fieldset,
+form.cheats p + p {
+    margin-top: 1em;
+}
+
+form.cheats legend + p {
+    margin-top: 0;
+}
+
+form.cheats [type="checkbox"] + label:after,
+form.cheats [type="radio"] + label:after {
+    content: '';
+    display: block;
+}
+
+form.cheats [type="checkbox"],
+form.cheats [type="radio"] {
+    margin-left: 0;
+}
+
+form.cheats textarea {
+    overflow: hidden;
+    border: none;
+    box-sizing: content-box;
+    text-align: justify;
+    resize: none;
+}
+
+form.cheats input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="reset"]):not([type="submit"]),
+form.cheats select,
+form.cheats textarea {
+    display: block;
+}
+
+form.cheats button,
+form.cheats input:not([type="checkbox"]):not([type="radio"]),
+form.cheats select,
+form.cheats textarea {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+form.cheats button,
+form.cheats input:not([type="checkbox"]):not([type="radio"]),
+form.cheats textarea {
+    padding-left: .25em;
+    padding-right: .25em;
+}
+
+form.cheats button,
+form.cheats [type="button"],
+form.cheats [type="reset"],
+form.cheats [type="submit"] {
+    border: none;
+}
+
+form.cheats input[type="radio"],
+form.cheats input[type="checkbox"] {
+    visibility: hidden;
+    position: absolute;
+}
+
+form.cheats input[type="radio"] + label:before,
+form.cheats input[type="checkbox"] + label:before {
+    position: relative;
+    height: .7em;
+    width: .7em;
+    margin-right: .188em;
+    content: " ";
+    display: inline-block;
+    background-color: #444;
+    text-align: center;
+    color: rgba(255, 255, 255, .8);
+}
+
+form.cheats input[type="radio"] + label:before {
+    top: -.1em;
+    line-height: .57em;
+    font-size: 1em;
+    border-radius: 50%;
+}
+
+form.cheats input[type="checkbox"] + label:before {
+    top: -.1em;
+    line-height: .48em;
+    font-size: .9em;
+    border-radius: 12.5%;
+}
+
+form.cheats input[type="radio"]:checked + label:before {
+    content: "●";
+}
+
+form.cheats input[type="checkbox"]:checked + label:before {
+    content: "■";
+}
+
+form.cheats input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="reset"]):not([type="submit"]),
+form.cheats select,
+form.cheats textarea {
+    box-sizing: border-box;
+    width: 100%;
+}

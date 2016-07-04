@@ -1,0 +1,22 @@
+{
+  "name": "form.cheats",
+  "version": "1.0.0",
+  "description": "Some useful cheats to easily style HTML forms",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lcfvs/form.cheats.git"
+  },
+  "keywords": [
+    "CSS",
+    "HTML",
+    "form",
+    "style",
+    "cheat"
+  ],
+  "author": "Lcf.vs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lcfvs/form.cheats/issues"
+  },
+  "homepage": "https://github.com/Lcfvs/form.cheats#readme"
+}

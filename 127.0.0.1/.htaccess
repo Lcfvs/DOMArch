@@ -1,0 +1,37 @@
+#Copyright 2015 Lcf.vs
+#Released under the MIT license
+#https://github.com/Lcfvs/DOMArch
+
+<IfModule mod_headers.c>
+    Header set X-XSS-Protection "1; mode=block"
+    Header always append X-Frame-Options SAMEORIGIN
+    Header set X-Content-Type-Options: "nosniff"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # *.host/public/*
+    RewriteCond %{ENV:REDIRECT_REDIRECT_STATUS} ^$
+    RewriteCond %{HTTP_HOST}%{REQUEST_URI} ^([^\.]+)\.([^\.\/]+\.[^\.\/]+)/([^/]+)(/[^/]+/.+)$
+    RewriteCond %{DOCUMENT_ROOT}/%2/entry-points/%1/public%4 -f
+    RewriteRule (.*) ./entry-points/%1/public%4 [L,QSA]
+
+    # *.host/public/*
+    RewriteCond %{ENV:REDIRECT_REDIRECT_STATUS} ^$
+    RewriteCond %{HTTP_HOST}%{REQUEST_URI} ^([^\.\/]+\.[^\.\/]+)/([^/]+)(/[^/]+/.+)$
+    RewriteCond %{DOCUMENT_ROOT}/%1/entry-points/website/public%3 -f
+    RewriteRule (.*) ./entry-points/website/public%3 [L,QSA]
+    
+    # *.host/*
+    RewriteCond %{ENV:REDIRECT_REDIRECT_STATUS} ^$
+    RewriteCond %{HTTP_HOST} ^([^\.]+)\.([^\.]+\.[^\.]+)$
+    RewriteCond %{DOCUMENT_ROOT}/%2/entry-points/%1/index.php -f
+    RewriteRule (.*) ./entry-points/%1/index.php? [L,QSA]
+
+    # host/*
+    RewriteCond %{ENV:REDIRECT_REDIRECT_STATUS} ^$
+    RewriteCond %{HTTP_HOST} ^([^\.]+\.[^\.]+)$
+    RewriteCond %{DOCUMENT_ROOT}/%1/entry-points/website/index.php -f
+    RewriteRule (.*) ./entry-points/website/index.php? [L,QSA]
+</IfModule>
