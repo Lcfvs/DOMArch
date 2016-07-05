@@ -23,11 +23,7 @@ class Index extends \DOMArch\Controller
 
         $view->get();
         $fields = $view->extract();
-        
-        $response = Users::service()
-            ->insert($fields)
-            ->fetch();
 
-        var_dump($response);exit;
+        dump($fields);
     }
 }
