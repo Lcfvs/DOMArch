@@ -1,5 +1,5 @@
 {
-  "name": "dom-arch/website",
+  "name": "dom-arch/service",
   "license": "MIT",
   "autoload": {
     "files": ["../../libraries/lcfvs/dom-arch/lib/dump.php"],
